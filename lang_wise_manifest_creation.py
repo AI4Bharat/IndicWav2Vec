@@ -77,7 +77,7 @@ def main(args):
     langs = list(os.listdir(dir_path))
     for lang in langs:
         lang_path = os.path.join(dir_path, lang)
-        search_path = os.path.join(lang_path, "/*." + args.ext)
+        search_path = os.path.join(lang_path, "**/*." + args.ext)
 
         local_arr = []
         local_arr.extend(

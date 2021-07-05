@@ -15,15 +15,17 @@ from dataclasses import dataclass, field
 from typing import Optional, Any
 from omegaconf import MISSING, II, OmegaConf
 
-from fairseq.data import (
+from fairseq.data.audio import (
     AddTargetDataset,
-    BinarizedAudioDataset,
     Dictionary,
-    FileAudioDataset,
     encoders,
     ConcatDataset,
     ResamplingDataset,
-    data_utils as fairseq_data_utils,
+)
+
+from fairseq.data.audio import (
+    FileAudioDataset,
+    BinarizedAudioDataset,
 )
 import numpy as np
 from fairseq.dataclass import FairseqDataclass
@@ -200,7 +202,7 @@ class AudioPretrainingTask(FairseqTask):
         languages by upsampling them.
         """
         prob = dataset_lens / dataset_lens.sum()
-        smoothed_prob = prob ** self.args.multilang_sampling_alpha
+        smoothed_prob = prob ** self.cfg.multilang_sampling_alpha
         smoothed_prob = smoothed_prob / smoothed_prob.sum()
         return smoothed_prob
 
