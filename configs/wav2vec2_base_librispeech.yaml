@@ -1,0 +1,59 @@
+# @package _group_
+
+common:
+  fp16: true
+  log_format: json
+  log_interval: 200
+
+checkpoint:
+  save_interval_updates: 25000
+  keep_interval_updates: 1
+  no_epoch_checkpoints: true
+
+task:
+  _name: audio_pretraining
+  data: ???
+  max_sample_size: 250000
+  min_sample_size: 32000
+  normalize: false
+
+dataset:
+  num_workers: 6
+  max_tokens: 1400000
+  skip_invalid_size_inputs_valid_test: true
+  train_subset: train_as,train_ta,train_bodo,train_ml,train_sindhi,train_santali,train_konkani,train_kn,train_or,train_kashmiri,train_dogri,train_bn,train_urdu,train_nepali,train_te,train_gu,train_hi,train_sanskrit,train_pa,train_mr,train_manipuri,train_en,train_maithili
+  valid_subset: valid_as,valid_ta,valid_bodo,valid_ml,valid_sindhi,valid_santali,valid_konkani,valid_kn,valid_or,valid_kashmiri,valid_dogri,valid_bn,valid_urdu,valid_nepali,valid_te,valid_gu,valid_hi,valid_sanskrit,valid_pa,valid_mr,valid_manipuri,valid_en,valid_maithili
+
+distributed_training:
+  distributed_world_size: 64
+  ddp_backend: legacy_ddp
+
+criterion:
+  _name: wav2vec
+  infonce: true
+  log_keys: ["prob_perplexity", "code_perplexity", "temp"]
+  loss_weights: [0.1, 10]
+
+optimization:
+  max_update: 400000
+  lr: [0.0005]
+
+optimizer:
+  _name: adam
+  adam_betas: (0.9,0.98)
+  adam_eps: 1e-06
+  weight_decay: 0.01
+
+lr_scheduler:
+  _name: polynomial_decay
+  warmup_updates: 32000
+
+model:
+  _name: wav2vec2
+  quantize_targets: true
+  final_dim: 256
+  encoder_layerdrop: 0.05
+  dropout_input: 0.1
+  dropout_features: 0.1
+  feature_grad_mult: 0.1
+  encoder_embed_dim: 768

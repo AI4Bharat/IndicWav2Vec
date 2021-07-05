@@ -149,7 +149,7 @@ class AudioPretrainingConfig(FairseqDataclass):
     tpu: bool = II("common.tpu")
 
 
-@register_task("audio_pretraining", dataclass=AudioPretrainingConfig)
+@register_task("temp_sampled_audio_pretraining", dataclass=AudioPretrainingConfig)
 class AudioPretrainingTask(FairseqTask):
     """ """
 
@@ -205,7 +205,7 @@ class AudioPretrainingTask(FairseqTask):
         return smoothed_prob
 
     def load_dataset(
-        self, split: str, task_cfg: FairseqDataclass = None, epoch=1 ** kwargs
+        self, split: str, task_cfg: FairseqDataclass = None, epoch=1, **kwargs
     ):
         data_path = self.cfg.data
         task_cfg = task_cfg or self.cfg
