@@ -21,9 +21,8 @@ dataset:
   num_workers: 6
   max_tokens: 1200000
   skip_invalid_size_inputs_valid_test: true
-  train_subset: train_as,train_ta,train_bodo,train_ml,train_sindhi,train_santali,train_konkani,train_kn,train_or,train_kashmiri,train_dogri,train_bn,train_urdu,train_nepali,train_te,train_gu,train_hi,train_sanskrit,train_pa,train_mr,train_manipuri,train_en,train_maithili
-  valid_subset: valid_as,valid_ta,valid_bodo,valid_ml,valid_sindhi,valid_santali,valid_konkani,valid_kn,valid_or,valid_kashmiri,valid_dogri,valid_bn,valid_urdu,valid_nepali,valid_te,valid_gu,valid_hi,valid_sanskrit,valid_pa,valid_mr,valid_manipuri,valid_en,valid_maithili
-
+  train_subset: kashmiri_train,bengali_train,dogri_train,urdu_train,punjabi_train,santali_train,hindi_train,manipuri_train,bodo_train,kannada_train,sanskrit_train,nepali_train,konkani_train,odia_train,assamese_train,telugu_train,sindhi_train,maithili_train,gujarati_train,english_train,marathi_train,tamil_train,malayalam_train
+  valid_subset: valid,kashmiri_valid,bengali_valid,dogri_valid,urdu_valid,punjabi_valid,santali_valid,hindi_valid,manipuri_valid,bodo_valid,kannada_valid,sanskrit_valid,nepali_valid,konkani_valid,odia_valid,assamese_valid,telugu_valid,sindhi_valid,maithili_valid,gujarati_valid,english_valid,marathi_valid,tamil_valid,malayalam_valid
 distributed_training:
   distributed_world_size: 128
   ddp_backend: legacy_ddp

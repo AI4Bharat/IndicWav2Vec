@@ -24,7 +24,7 @@ def get_parser():
     )
     parser.add_argument(
         "--valid-percent",
-        default=0.01,
+        default=0.1,
         type=float,
         metavar="D",
         help="percentage of data to use as validation set (between 0 and 1)",
@@ -75,7 +75,7 @@ def main(args):
 
     dir_path = os.path.realpath(args.root)
     langs = list(os.listdir(dir_path))
-    for lang in langs:
+    for lang in tqdm(langs):
         lang_path = os.path.join(dir_path, lang)
         search_path = os.path.join(lang_path, "**/*." + args.ext)
 

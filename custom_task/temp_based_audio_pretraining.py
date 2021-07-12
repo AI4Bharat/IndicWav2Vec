@@ -15,7 +15,7 @@ from dataclasses import dataclass, field
 from typing import Optional, Any
 from omegaconf import MISSING, II, OmegaConf
 
-from fairseq.data.audio import (
+from fairseq.data import (
     AddTargetDataset,
     Dictionary,
     encoders,
@@ -23,7 +23,7 @@ from fairseq.data.audio import (
     ResamplingDataset,
 )
 
-from fairseq.data.audio import (
+from fairseq.data import (
     FileAudioDataset,
     BinarizedAudioDataset,
 )
@@ -104,6 +104,13 @@ class AudioPretrainingConfig(FairseqDataclass):
         default=None, metadata={"help": "min sample size to skip small examples"}
     )
 
+    seed: Optional[int] = field(
+            default=42, metadata={'help': "seed for sampling"}
+            )
+    sampling_alpha: Optional[float] = field(
+            default=0.5, metadata={'help': "alpha parameter for temp sampling"}
+            )
+
     # Options for reporting WER metrics during validation. Only applicable to
     # Seq2Seq models during fine-tuning
     eval_wer: bool = field(
@@ -152,7 +159,7 @@ class AudioPretrainingConfig(FairseqDataclass):
 
 
 @register_task("temp_sampled_audio_pretraining", dataclass=AudioPretrainingConfig)
-class AudioPretrainingTask(FairseqTask):
+class TempAudioPretrainingTask(FairseqTask):
     """ """
 
     cfg: AudioPretrainingConfig
@@ -202,7 +209,7 @@ class AudioPretrainingTask(FairseqTask):
         languages by upsampling them.
         """
         prob = dataset_lens / dataset_lens.sum()
-        smoothed_prob = prob ** self.cfg.multilang_sampling_alpha
+        smoothed_prob = prob ** self.cfg.sampling_alpha
         smoothed_prob = smoothed_prob / smoothed_prob.sum()
         return smoothed_prob
 
@@ -283,7 +290,7 @@ class AudioPretrainingTask(FairseqTask):
             datasets.append(dataset)
             # convert frames to num_hours
             # using formulae here https://github.com/bastibe/python-soundfile/blob/744efb4b01abc72498a96b09115b42a4cabd85e4/soundfile.py#L388
-            datasets_sizes.append(sum(dataset.sizes) / self.args.sample_rate / 3600)
+            datasets_sizes.append(sum(dataset.sizes) / self.cfg.sample_rate / 3600)
         # most of resampling code taken from https://github.com/pytorch/fairseq/blob/c47a9b2eef0f41b0564c8daf52cb82ea97fc6548/fairseq/data/audio/speech_to_text_dataset.py#L439
         if len(_splits) == 1:
             self.datasets[split] = dataset
@@ -305,7 +312,7 @@ class AudioPretrainingTask(FairseqTask):
                 ResamplingDataset(
                     datasets[i],
                     size_ratio=size_ratio[i],
-                    seed=self.args.seed,
+                    seed=self.cfg.seed,
                     epoch=epoch,
                     replace=size_ratio[i] >= 1.0,
                 )
