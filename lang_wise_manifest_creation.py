@@ -57,8 +57,9 @@ def read_file(fname, args, dir_path):
 
     frames = soundfile.info(fname).frames
     if (
-        frames > 0 and frames <= 480000
-    ):  ## Added to remove any audio greater than 30 seconds
+        #frames > 0 and frames <= 480000
+        frames > 0
+    ):
         ret_val = "{}\t{}\n".format(os.path.relpath(file_path, dir_path), frames)
         return ret_val
     else:

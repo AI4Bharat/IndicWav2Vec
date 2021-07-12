@@ -249,7 +249,7 @@ class TempAudioPretrainingTask(FairseqTask):
         datasets_sizes = []
         for lang in _splits:
             manifest_path = os.path.join(data_path, "{}.tsv".format(lang))
-
+            logger.info(lang)
             dataset = FileAudioDataset(
                 manifest_path=manifest_path,
                 sample_rate=task_cfg.get("sample_rate", self.cfg.sample_rate),
@@ -298,6 +298,8 @@ class TempAudioPretrainingTask(FairseqTask):
             # as_train.tsv, hi_train.tsv .. -> as, hi ..
             languages = [_split.split("-")[0] for _split in _splits]
             datasets_sizes = np.array(datasets_sizes)
+            for lang, size in zip(languages, datasets_sizes):
+                logger.info(f"{lang} -->  {size}")
             sample_probs = self._get_sample_prob(datasets_sizes)
             p_str = str(
                 {_i: f"{sample_probs[i]:.3f}" for i, _i in enumerate(languages)}
