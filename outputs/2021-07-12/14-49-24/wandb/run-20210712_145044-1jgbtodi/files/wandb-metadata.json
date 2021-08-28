@@ -1,0 +1,37 @@
+{
+    "os": "Linux-5.4.0-48-generic-x86_64-with-debian-buster-sid",
+    "python": "3.7.10",
+    "heartbeatAt": "2021-07-12T09:20:46.086425",
+    "startedAt": "2021-07-12T09:20:44.685397",
+    "docker": null,
+    "gpu": "A100-SXM4-40GB",
+    "gpu_count": 8,
+    "cpu_count": 128,
+    "cuda": "11.0.207",
+    "args": [
+        "task.data=/lusnlsas/paramsiddhi/iitm/yashkm/manifests",
+        "task._name=temp_sampled_audio_pretraining",
+        "common.wandb_project=testing",
+        "common.log_interval=1",
+        "common.log_format=tqdm",
+        "common.user_dir=/lusnlsas/paramsiddhi/iitm/yashkm/indic-wav2vec2/custom_task",
+        "checkpoint.save_dir=/lusnlsas/paramsiddhi/iitm/yashkm/pretrained_checkpoints/pretrain-xlsr-small",
+        "distributed_training.distributed_world_size=8",
+        "+optimization.update_freq=[16]",
+        "--config-dir",
+        "/lusnlsas/paramsiddhi/iitm/yashkm/indic-wav2vec2/configs",
+        "--config-name",
+        "wav2vec2_large_librivox.yaml"
+    ],
+    "state": "running",
+    "program": "<python with no main file>",
+    "git": {
+        "remote": "https://github.com/AI4Bharat/indic-wav2vec2.git",
+        "commit": "cf5b7ac003af1260c7f5bd8dffee2b3bd1b9e5ed"
+    },
+    "email": "gowtham.ramesh1@gmail.com",
+    "root": "/lusnlsas/paramsiddhi/iitm/yashkm/indic-wav2vec2",
+    "host": "dgxn22-cn",
+    "username": "yashkm",
+    "executable": "/lusnlsas/paramsiddhi/iitm/yashkm/anaconda3/envs/friday/bin/python"
+}

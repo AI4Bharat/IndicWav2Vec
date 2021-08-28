@@ -1,0 +1,49 @@
+2021-07-12 14:50:45,577 INFO    MainThread:96802 [internal.py:wandb_internal():91] W&B internal server running at pid: 96802, started at: 2021-07-12 14:50:45.576320
+2021-07-12 14:50:45,579 DEBUG   HandlerThread:96802 [handler.py:handle_request():124] handle_request: check_version
+2021-07-12 14:50:45,579 INFO    WriterThread:96802 [datastore.py:open_for_write():80] open: /lusnlsas/paramsiddhi/iitm/yashkm/indic-wav2vec2/outputs/2021-07-12/14-49-24/wandb/run-20210712_145044-1jgbtodi/run-1jgbtodi.wandb
+2021-07-12 14:50:45,581 DEBUG   SenderThread:96802 [sender.py:send():179] send: header
+2021-07-12 14:50:45,582 DEBUG   SenderThread:96802 [sender.py:send_request():193] send_request: check_version
+2021-07-12 14:50:45,669 DEBUG   SenderThread:96802 [sender.py:send():179] send: run
+2021-07-12 14:50:46,074 DEBUG   HandlerThread:96802 [handler.py:handle_request():124] handle_request: run_start
+2021-07-12 14:50:46,075 INFO    SenderThread:96802 [dir_watcher.py:__init__():168] watching files in: /lusnlsas/paramsiddhi/iitm/yashkm/indic-wav2vec2/outputs/2021-07-12/14-49-24/wandb/run-20210712_145044-1jgbtodi/files
+2021-07-12 14:50:46,075 INFO    SenderThread:96802 [sender.py:_start_run_threads():719] run started: 1jgbtodi with start time 1626081644
+2021-07-12 14:50:46,075 DEBUG   SenderThread:96802 [sender.py:send():179] send: summary
+2021-07-12 14:50:46,076 INFO    SenderThread:96802 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2021-07-12 14:50:46,086 DEBUG   HandlerThread:96802 [meta.py:__init__():39] meta init
+2021-07-12 14:50:46,086 DEBUG   HandlerThread:96802 [meta.py:__init__():53] meta init done
+2021-07-12 14:50:46,086 DEBUG   HandlerThread:96802 [meta.py:probe():210] probe
+2021-07-12 14:50:46,094 DEBUG   HandlerThread:96802 [meta.py:_setup_git():200] setup git
+2021-07-12 14:50:46,112 DEBUG   HandlerThread:96802 [meta.py:_setup_git():207] setup git done
+2021-07-12 14:50:46,112 DEBUG   HandlerThread:96802 [meta.py:_save_pip():57] save pip
+2021-07-12 14:50:46,114 DEBUG   HandlerThread:96802 [meta.py:_save_pip():71] save pip done
+2021-07-12 14:50:46,114 DEBUG   HandlerThread:96802 [meta.py:_save_conda():78] save conda
+2021-07-12 14:50:47,077 INFO    Thread-8  :96802 [dir_watcher.py:_on_file_created():216] file/dir created: /lusnlsas/paramsiddhi/iitm/yashkm/indic-wav2vec2/outputs/2021-07-12/14-49-24/wandb/run-20210712_145044-1jgbtodi/files/requirements.txt
+2021-07-12 14:50:47,077 INFO    Thread-8  :96802 [dir_watcher.py:_on_file_created():216] file/dir created: /lusnlsas/paramsiddhi/iitm/yashkm/indic-wav2vec2/outputs/2021-07-12/14-49-24/wandb/run-20210712_145044-1jgbtodi/files/wandb-summary.json
+2021-07-12 14:50:47,077 INFO    Thread-8  :96802 [dir_watcher.py:_on_file_created():216] file/dir created: /lusnlsas/paramsiddhi/iitm/yashkm/indic-wav2vec2/outputs/2021-07-12/14-49-24/wandb/run-20210712_145044-1jgbtodi/files/conda-environment.yaml
+2021-07-12 14:50:51,080 INFO    Thread-8  :96802 [dir_watcher.py:_on_file_created():216] file/dir created: /lusnlsas/paramsiddhi/iitm/yashkm/indic-wav2vec2/outputs/2021-07-12/14-49-24/wandb/run-20210712_145044-1jgbtodi/files/output.log
+2021-07-12 14:50:51,937 WARNING MainThread:96802 [internal.py:wandb_internal():147] Internal process interrupt: 1
+2021-07-12 14:50:52,044 DEBUG   HandlerThread:96802 [meta.py:_save_conda():86] save conda done
+2021-07-12 14:50:52,044 DEBUG   HandlerThread:96802 [meta.py:probe():252] probe done
+2021-07-12 14:50:52,082 INFO    Thread-8  :96802 [dir_watcher.py:_on_file_created():216] file/dir created: /lusnlsas/paramsiddhi/iitm/yashkm/indic-wav2vec2/outputs/2021-07-12/14-49-24/wandb/run-20210712_145044-1jgbtodi/files/wandb-metadata.json
+2021-07-12 14:50:52,084 DEBUG   HandlerThread:96802 [handler.py:handle_request():124] handle_request: stop_status
+2021-07-12 14:50:52,084 DEBUG   SenderThread:96802 [sender.py:send_request():193] send_request: stop_status
+2021-07-12 14:50:52,121 WARNING MainThread:96802 [internal.py:wandb_internal():147] Internal process interrupt: 2
+2021-07-12 14:50:52,121 ERROR   MainThread:96802 [internal.py:wandb_internal():150] Internal process interrupted.
+2021-07-12 14:50:52,441 INFO    SenderThread:96802 [sender.py:finish():945] shutting down sender
+2021-07-12 14:50:52,441 INFO    SenderThread:96802 [dir_watcher.py:finish():282] shutting down directory watcher
+2021-07-12 14:50:53,084 INFO    SenderThread:96802 [dir_watcher.py:finish():312] scan: /lusnlsas/paramsiddhi/iitm/yashkm/indic-wav2vec2/outputs/2021-07-12/14-49-24/wandb/run-20210712_145044-1jgbtodi/files
+2021-07-12 14:50:53,084 INFO    SenderThread:96802 [dir_watcher.py:finish():318] scan save: /lusnlsas/paramsiddhi/iitm/yashkm/indic-wav2vec2/outputs/2021-07-12/14-49-24/wandb/run-20210712_145044-1jgbtodi/files/requirements.txt requirements.txt
+2021-07-12 14:50:53,084 INFO    SenderThread:96802 [dir_watcher.py:finish():318] scan save: /lusnlsas/paramsiddhi/iitm/yashkm/indic-wav2vec2/outputs/2021-07-12/14-49-24/wandb/run-20210712_145044-1jgbtodi/files/wandb-metadata.json wandb-metadata.json
+2021-07-12 14:50:53,085 INFO    SenderThread:96802 [dir_watcher.py:finish():318] scan save: /lusnlsas/paramsiddhi/iitm/yashkm/indic-wav2vec2/outputs/2021-07-12/14-49-24/wandb/run-20210712_145044-1jgbtodi/files/conda-environment.yaml conda-environment.yaml
+2021-07-12 14:50:53,091 INFO    WriterThread:96802 [datastore.py:close():288] close: /lusnlsas/paramsiddhi/iitm/yashkm/indic-wav2vec2/outputs/2021-07-12/14-49-24/wandb/run-20210712_145044-1jgbtodi/run-1jgbtodi.wandb
+2021-07-12 14:50:53,091 INFO    SenderThread:96802 [dir_watcher.py:finish():318] scan save: /lusnlsas/paramsiddhi/iitm/yashkm/indic-wav2vec2/outputs/2021-07-12/14-49-24/wandb/run-20210712_145044-1jgbtodi/files/output.log output.log
+2021-07-12 14:50:53,091 INFO    SenderThread:96802 [dir_watcher.py:finish():318] scan save: /lusnlsas/paramsiddhi/iitm/yashkm/indic-wav2vec2/outputs/2021-07-12/14-49-24/wandb/run-20210712_145044-1jgbtodi/files/wandb-summary.json wandb-summary.json
+2021-07-12 14:50:53,094 INFO    SenderThread:96802 [dir_watcher.py:finish():318] scan save: /lusnlsas/paramsiddhi/iitm/yashkm/indic-wav2vec2/outputs/2021-07-12/14-49-24/wandb/run-20210712_145044-1jgbtodi/files/config.yaml config.yaml
+2021-07-12 14:50:53,095 INFO    SenderThread:96802 [file_pusher.py:finish():177] shutting down file pusher
+2021-07-12 14:50:53,098 INFO    SenderThread:96802 [file_pusher.py:join():182] waiting for file pusher
+2021-07-12 14:50:54,125 INFO    Thread-15 :96802 [upload_job.py:push():137] Uploaded file /lusnlsas/paramsiddhi/iitm/yashkm/indic-wav2vec2/outputs/2021-07-12/14-49-24/wandb/run-20210712_145044-1jgbtodi/files/config.yaml
+2021-07-12 14:50:54,151 INFO    Thread-14 :96802 [upload_job.py:push():137] Uploaded file /lusnlsas/paramsiddhi/iitm/yashkm/indic-wav2vec2/outputs/2021-07-12/14-49-24/wandb/run-20210712_145044-1jgbtodi/files/wandb-summary.json
+2021-07-12 14:50:54,167 INFO    Thread-11 :96802 [upload_job.py:push():137] Uploaded file /lusnlsas/paramsiddhi/iitm/yashkm/indic-wav2vec2/outputs/2021-07-12/14-49-24/wandb/run-20210712_145044-1jgbtodi/files/requirements.txt
+2021-07-12 14:50:54,190 INFO    Thread-12 :96802 [upload_job.py:push():137] Uploaded file /lusnlsas/paramsiddhi/iitm/yashkm/indic-wav2vec2/outputs/2021-07-12/14-49-24/wandb/run-20210712_145044-1jgbtodi/files/wandb-metadata.json
+2021-07-12 14:50:54,191 INFO    Thread-13 :96802 [upload_job.py:push():137] Uploaded file /lusnlsas/paramsiddhi/iitm/yashkm/indic-wav2vec2/outputs/2021-07-12/14-49-24/wandb/run-20210712_145044-1jgbtodi/files/output.log
+2021-07-12 14:50:55,017 INFO    MainThread:96802 [internal.py:handle_exit():78] Internal process exited

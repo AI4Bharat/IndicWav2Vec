@@ -217,7 +217,7 @@ class TempAudioPretrainingTask(FairseqTask):
         self, split: str, task_cfg: FairseqDataclass = None, epoch=1, **kwargs
     ):
         data_path = self.cfg.data
-        task_cfg = task_cfg or self.cfg
+        task_cfg = self.cfg
         # upgrade old task
         if isinstance(task_cfg, Namespace):
             if not hasattr(task_cfg, "autoregressive"):

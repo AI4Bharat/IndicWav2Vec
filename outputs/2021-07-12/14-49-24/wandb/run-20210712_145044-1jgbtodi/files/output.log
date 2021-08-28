@@ -1,0 +1,21 @@
+[2021-07-12 14:50:51,086][fairseq.trainer][INFO] - begin training epoch 1
+[2021-07-12 14:50:51,087][fairseq_cli.train][INFO] - Start iterating over samples
+Process SpawnProcess-1:
+Traceback (most recent call last):
+  File "/lusnlsas/paramsiddhi/iitm/yashkm/anaconda3/envs/friday/lib/python3.7/multiprocessing/process.py", line 300, in _bootstrap
+    util._exit_function()
+  File "/lusnlsas/paramsiddhi/iitm/yashkm/anaconda3/envs/friday/lib/python3.7/multiprocessing/util.py", line 334, in _exit_function
+    _run_finalizers(0)
+  File "/lusnlsas/paramsiddhi/iitm/yashkm/anaconda3/envs/friday/lib/python3.7/multiprocessing/util.py", line 300, in _run_finalizers
+    finalizer()
+  File "/lusnlsas/paramsiddhi/iitm/yashkm/anaconda3/envs/friday/lib/python3.7/multiprocessing/util.py", line 224, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/lusnlsas/paramsiddhi/iitm/yashkm/anaconda3/envs/friday/lib/python3.7/multiprocessing/synchronize.py", line 88, in _cleanup
+    unregister(name)
+  File "/lusnlsas/paramsiddhi/iitm/yashkm/anaconda3/envs/friday/lib/python3.7/multiprocessing/semaphore_tracker.py", line 87, in unregister
+    self._send('UNREGISTER', name)
+  File "/lusnlsas/paramsiddhi/iitm/yashkm/anaconda3/envs/friday/lib/python3.7/multiprocessing/semaphore_tracker.py", line 90, in _send
+    self.ensure_running()
+  File "/lusnlsas/paramsiddhi/iitm/yashkm/anaconda3/envs/friday/lib/python3.7/multiprocessing/semaphore_tracker.py", line 46, in ensure_running
+    pid, status = os.waitpid(self._pid, os.WNOHANG)
+KeyboardInterrupt
