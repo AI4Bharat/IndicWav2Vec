@@ -61,6 +61,33 @@ Configs for both the models are provided in the [configs](https://github.com/AI4
 
 ### Fine-tuning
 
+Following is the invocation script for finetuning IndicWav2Vec large on a particular language
+    
+```
+sbatch --job-name <NAME> --gres gpu:<N_GPU_PER_NODE> --cpus-per-task <N_CPUS> \
+    --nodes <N_NODES> --ntasks-per-node <N_TASKS> \
+    --wrap "srun --output finetune.log.node%t --error finetune.stderr.node%t.%j \
+        $(which fairseq-hydra-train) \
+        task.data=/path/to/finetune/manifest/directory/for/a/particular/language \
+        common.wandb_project=<wandb project name> \
+        model.w2v_path=/path/to/pretrained/model_large.pt \
+        common.log_interval=50 \
+        common.log_format=tqdm \
+        dataset.max_tokens=1000000 \
+        checkpoint.save_dir=/path/to/save/model/fine_tune_checkpoints \
+        +optimization.update_freq='[1]' \
+        distributed_training.distributed_world_size=<total GPUs> \
+        --config-dir /path/to/configs/directory \
+        --config-name ai4b_xlsr"
+```
+
+For IndicWav2Vec Base model we override the above configuration with 
+```
+model.w2v_path=/path/to/pretrained/model_base.pt \
+--config-name ai4b_base"
+```
+
+Configs for both the models are provided in the [finetune_configs](https://github.com/AI4Bharat/indic-wav2vec2/tree/main/finetune_configs) directory
 
 ### Training Language Model
 
