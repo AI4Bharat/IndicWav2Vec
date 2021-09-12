@@ -6,7 +6,6 @@ import os
 import webrtcvad
 import tqdm
 import glob
-from joblib import Parallel, delayed
 
 #Usage
 #python <script>.py <data_read_dir> <data_write_dir> <language_name>
