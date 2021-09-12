@@ -1,0 +1,17 @@
+packaging 
+soundfile 
+swifter 
+joblib==1.0.0 
+indic-nlp-library
+tqdm==4.56.0
+numpy==1.20.0 
+pandas==1.2.2 
+progressbar2==3.53.1
+python_Levenshtein==0.12.2 
+editdistance==0.3.1 
+omegaconf==2.0.6
+tensorboard==2.4.1 
+tensorboardX==2.1 
+wandb 
+jiwer 
+jupyterlab

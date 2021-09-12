@@ -45,4 +45,3 @@ RUN git clone https://github.com/flashlight/flashlight.git && \
 WORKDIR /workspace
 COPY infer /workspace/infer
 COPY scripts /workspace/scripts
-COPY datasets_test /workspace/datasets_test

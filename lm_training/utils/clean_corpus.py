@@ -57,6 +57,7 @@ def main(args):
             lex_data.extend(t.split())
 
     dict_chars.update(' ')
+    print(lex_data)
     illegal_chars = ''.join(legal_chars.difference(all_chars.union(dict_chars))) # changing dict_chars to union of all_chars here!
     regex = re.compile('[%s]' % re.escape(illegal_chars))
 
@@ -99,12 +100,14 @@ if __name__ == "__main__":
         description="Generate lm_data and top-k vocab."
     )
     parser.add_argument(
+        "-d",
         "--dir_path",
         help="Path to the lm directory",
         type=str,
         default='',
     )
     parser.add_argument(
+        "-l",
         "--lang", help="language_dataset name, eg: tamil, telugu, etc", type=str, required=True
     )
     parser.add_argument(
