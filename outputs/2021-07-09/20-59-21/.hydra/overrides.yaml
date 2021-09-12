@@ -1,9 +1,0 @@
-- task.data=/lusnlsas/paramsiddhi/iitm/yashkm/manifests
-- task._name=temp_sampled_audio_pretraining
-- common.wandb_project=testing
-- common.log_interval=1
-- common.log_format=tqdm
-- common.user_dir=/lusnlsas/paramsiddhi/iitm/yashkm/indic-wav2vec2/custom_task
-- checkpoint.save_dir=/lusnlsas/paramsiddhi/iitm/yashkm/pretrained_checkpoints/pretrain-xlsr-small
-- distributed_training.distributed_world_size=8
-- +optimization.update_freq=[16]
