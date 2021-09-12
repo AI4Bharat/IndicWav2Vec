@@ -1,6 +1,6 @@
 # Data Processing
-### Installing FFMPEG Library
-> sudo apt-get install ffmpeg
+### Configuration
+> FFmpeg installation: ```sudo apt-get install ffmpeg```
 
 > Installing libs to your virtual env: ```pip install -r requirements.txt```
 ### For Downloading Data
