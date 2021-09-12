@@ -12,7 +12,9 @@ Click [here](https://github.com/AI4Bharat/indic-wav2vec2/tree/main/data_prep_scr
 ### Manifest Creation
 
 For creating language-wise pretraining manifest
-> $ python path/to/lang_wise_manifest_creation.py /path/to/wave/files --dest /manifest/path --ext $ext --valid-percent $valid
+``` shell script
+$ python path/to/lang_wise_manifest_creation.py /path/to/wave/files --dest /manifest/path --ext $ext --valid-percent $valid
+```
 
 For ```/path/to/wav/files/``` we expect the directory to have one folder per language under the parent directory
 
@@ -23,8 +25,8 @@ In our pretraing, we use a ```--valid-percent``` as 0.03
 For pretraining the model we do multi-node training and schedule the runs with slurm.
 
 Following is the invocation script for training IndicWav2Vec base starting from Wav2Vec2.0 English base ckeckpoint
-```
-sbatch --job-name <NAME> --gres gpu:<N_GPU_PER_NODE> --cpus-per-task <N_CPUS> \
+``` shell script
+$ sbatch --job-name <NAME> --gres gpu:<N_GPU_PER_NODE> --cpus-per-task <N_CPUS> \
     --nodes <N_NODES> --ntasks-per-node <N_TASKS> \
     --wrap "srun --output train.log.node%t --error train.stderr.node%t.%j \
         $(which fairseq-hydra-train) \
