@@ -60,3 +60,4 @@ cd ../../..
 cd scripts
 bash infer_auto.sh <cuda_device_no> <data_folder_name> <am_folder_name> <lm_folder_name> <lm_weight> <word_score> <beam_width>
 ```
+> Scripts to be run to reproduce results from **paper** are provided [here](https://github.com/AI4Bharat/indic-wav2vec2/blob/main/w2v_inference/scripts/paper_results.sh).
