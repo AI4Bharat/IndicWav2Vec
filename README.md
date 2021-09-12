@@ -68,6 +68,8 @@ We use fairseq's standard ```wav2vec_manifest.py``` for creating tsv files from 
 After that the labels for each 'tsv' files can be created by appropriately making '.wrd' files which contain label (transcription) for the audio file present in the same relative line of 'tsv' file. In addition to that '.ltr' files are formed from '.wrd' files in which individuals characters are spaced out and a '|' is inserted between the two adjacent words and also at the end.
 e.g 'HELLO WORLD' -> 'H E L L O | W O R L D |'
 
+The sample scripts are already inluded in the data_prep_scripts folder (```msr_data_post_manifest.py msr_data_post_manifest.py, mucs_post_manifest.py, openslr_post_manifest.py```) for MSR, MUCS and OpenSLR data respectively. These scripts have to be run individually for each language in the dataset with appropriate path changes. 
+
 #### Fine-tune
 
 Following is the invocation script for finetuning IndicWav2Vec large on a particular language
