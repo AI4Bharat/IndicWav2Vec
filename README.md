@@ -11,8 +11,8 @@ Click [here](https://github.com/AI4Bharat/indic-wav2vec2/tree/main/data_prep_scr
  
 ### Training Language Model
 
-Scripts for installing, preparing data and training language model is present in [lm_training](#indic-wav2vec2/lm_training) folder.
+Scripts for installing, preparing data and training language model is present in [lm_training](https://github.com/AI4Bharat/indic-wav2vec2/tree/main/lm_training) folder.
 
 ### Inference/Evaluation
 
-Evaluation Scripts are present in [w2v_inference](#indic-wav2vec2/w2v_inference) folder.
+Evaluation Scripts with complete documentation are present in [w2v_inference](https://github.com/AI4Bharat/indic-wav2vec2/tree/main/w2v_inference) folder.
