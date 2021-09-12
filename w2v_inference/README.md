@@ -51,6 +51,7 @@ cd ../../..
 ```
 
 ## Data Preparation
+- Make dataset and checkpoint directories ```mkdir datasets_test && mkdir checkpoints && mkdir checkpoints/language_model && mkdir checkpoints/acoustic_model```
 - Prepare test manifest folder using [fairseq](https://github.com/pytorch/fairseq/tree/master/examples/wav2vec) and put the manifest folder inside ```datasets_test``` folder. The ```<data_folder_name>``` must be of the form, ```<lang>_*```, where ```lang``` can be hindi, bengali, gujarati, tamil, telugu, tamil, nepali, sinhala and odia.
 - Download/Train fine-tuning and language model checkpoints and put it inside ```checkpoints/acoustic_model``` and ```checkpoints/language_model``` folder respectively. Note: ```<am_folder_name>``` must contain checkpoints whose name should be of the form: ```<lang>_<am_folder_name>.pt``` and ```<lm_folder_name>``` must contain folder ```<lang>``` with ```lm.binary``` and ```lexicon.lst```.
 
