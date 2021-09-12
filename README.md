@@ -8,3 +8,11 @@ The sequence of data preperation pipeline involve
 - Finally chunk the data (using ```chunking.py```)
 
 Click [here](https://github.com/AI4Bharat/indic-wav2vec2/tree/main/data_prep_scripts) for more extended documentation on how to execute these individual steps.
+ 
+### Training Language Model
+
+Scripts for installing, preparing data and training language model is present in [lm_training](#indic-wav2vec2/lm_training) folder.
+
+### Inference/Evaluation
+
+Evaluation Scripts are present in [w2v_inference](#indic-wav2vec2/w2v_inference) folder.
