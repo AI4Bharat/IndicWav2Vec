@@ -40,3 +40,6 @@ The reason why folder_name has been kept as a seperate entity is to allow parall
 
 - All the audio files present in the <chunking_path> will be chunked and saved in the same location. The original files are removed.
 
+### For preparing data for finetuning
+The ```msr_data_post_manifest.py, msr_data_post_manifest.py, mucs_post_manifest.py``` are sample scripts for preparing the datasets (MSR, MUCS and OpenSLR, in that order) ready for finetuning.
+These scripts are to be run for individual language by making appropiate changes in the script paths. 
