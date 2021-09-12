@@ -11,6 +11,13 @@ Click [here](https://github.com/AI4Bharat/indic-wav2vec2/tree/main/data_prep_scr
 
 ### Manifest Creation
 
+For creating language-wise pretraining manifest
+> $ python path/to/lang_wise_manifest_creation.py /path/to/wave/files --dest /manifest/path --ext $ext --valid-percent $valid
+
+For ```/path/to/wav/files/``` we expect the directory to have one folder per language under the parent directory
+
+In our pretraing, we use a ```--valid-percent``` as 0.03
+
 ### Pretraining
 
 For pretraining the model we do multi-node training and schedule the runs with slurm.
