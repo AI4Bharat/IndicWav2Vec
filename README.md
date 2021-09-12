@@ -20,6 +20,25 @@ For ```/path/to/wav/files/``` we expect the directory to have one folder per lan
 
 In our pretraing, we use a ```--valid-percent``` as 0.03
 
+For creating a combined validation file for all languages, we concatenate all individual ```*_valid.tsv``` files to create a ```valid.tsv``` file.
+
+```
+import pandas as pd
+import glob
+
+filenames = glob.glob("*_valid.tsv")
+
+combined = []
+for f in filename:
+    df = pd.read_csv(f, skiprows=1, names=['f', 'd'], sep='\t')
+    combined.append(df)
+
+df_combined = pd.concat(combined, axis=0, ignore_index=True)
+df_combined.to_csv('valid.tsv', index=True, header=False, sep='\t')
+```
+
+We then add the ```/path/to/wav/files/```  to the first line of the valid.tsv file
+
 ### Pretraining
 
 For pretraining the model we do multi-node training and schedule the runs with slurm.
