@@ -59,7 +59,16 @@ lr_scheduler.warmup_updates=0 \
 
 Configs for both the models are provided in the [configs](https://github.com/AI4Bharat/indic-wav2vec2/tree/main/configs) directory
 
-### Fine-tuning
+### Fine-tuning process
+
+#### Manifest creation
+We use fairseq's standard ```wav2vec_manifest.py``` for creating tsv files from audio data files. The same can be done using the following command after installing fairseq
+> ```python <fairseq_path>/examples/wav2vec/wav2vec_manifest.py /path/to/waves --dest /manifest/path --ext $ext --valid-percent $valid```
+
+After that the labels for each 'tsv' files can be created by appropriately making '.wrd' files which contain label (transcription) for the audio file present in the same relative line of 'tsv' file. In addition to that '.ltr' files are formed from '.wrd' files in which individuals characters are spaced out and a '|' is inserted between the two adjacent words and also at the end.
+e.g 'HELLO WORLD' -> 'H E L L O | W O R L D |'
+
+#### Fine-tune
 
 Following is the invocation script for finetuning IndicWav2Vec large on a particular language
     
