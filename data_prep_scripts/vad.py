@@ -6,7 +6,7 @@ import os
 import webrtcvad
 import tqdm
 import glob
-
+from joblib import Parallel, delayed
 #Usage
 #python <script>.py <data_read_dir> <data_write_dir> <language_name>
 
@@ -137,5 +137,8 @@ if not os.path.exists(write_path):
 
 f_all = glob.glob(data_path+'/'+folder+"/**/*.wav",recursive=True)
 
-for file in tqdm.tqdm(f_all):
-    vad_file(file,write_path+'/'+folder+'/',2)
+Parallel(n_jobs=-1)(
+    delayed(vad_file)(file,write_path+'/'+folder+'/',2) for file in tqdm.tqdm(f_all)
+)
+#for file in tqdm.tqdm(f_all):
+#    vad_file(file,write_path+'/'+folder+'/',2)
