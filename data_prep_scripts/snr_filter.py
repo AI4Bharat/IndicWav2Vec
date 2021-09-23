@@ -4,6 +4,7 @@ import os
 import sys
 import tqdm
 import glob
+from joblib import Parallel, delayed
 
 eps = 1e-10
 
@@ -61,8 +62,11 @@ def wada_snr(file):
     dNoiseEng = dEng / (1 + dFactor) # Noise energy
     dSigEng = dEng * dFactor / (1 + dFactor) # Signal energy
     snr = 10 * np.log10(dSigEng / dNoiseEng)
-
-    return snr
+    
+    if snr < 15:
+        _,f_name = os.path.split(file)
+        os.rename(file,snr_rejected+"/"+folder+"/"+f_name)
+#     return snr
 
 base_path = sys.argv[1]
 snr_rejected = "snr_rejected"
@@ -72,9 +76,12 @@ files = glob.glob(base_path+"/"+folder+"/**/*.wav",recursive=True)
 if not os.path.exists(snr_rejected+"/"+folder):
     os.makedirs(snr_rejected+"/"+folder)
 
-for f in tqdm.tqdm(files):
-    snr = wada_snr(f)
-    if snr < 15:
-        _,f_name = os.path.split(f)
-        os.rename(f,snr_rejected+"/"+folder+"/"+f_name)
+Parallel(n_jobs=-1)(
+    delayed(wada_snr)(file) for file in tqdm.tqdm(files)
+)
+# for f in tqdm.tqdm(files):
+#     snr = wada_snr(f)
+#     if snr < 15:
+#         _,f_name = os.path.split(f)
+#         os.rename(f,snr_rejected+"/"+folder+"/"+f_name)
 
