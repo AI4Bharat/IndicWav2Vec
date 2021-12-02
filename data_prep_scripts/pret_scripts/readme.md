@@ -1,19 +1,20 @@
-# Data Processing
+# Pretraining Data Processing
 ### Configuration
 > FFmpeg installation: ```sudo apt-get install ffmpeg```
 
 > Installing libs to your virtual env: ```pip install -r requirements.txt```
 ### For Downloading Data
-> Required libraries ```youtube_dl, pandas, ffmpeg, tqdm```
+> Required libraries ```youtube_dl, yt_dlp, pandas, ffmpeg, tqdm```
 
-> Usage: ```python data_scrape.py <excel_sheet> <language/sheetname>```
+> Usage: ```bash process_data.sh </path/to/download> <num_of_threads>```
 
-- The <excel_sheet> refers to the xlsx sheet containing Youtube urls'. The urls' are placed sheetwise for different languages and named as per the language name.
-- The <language/sheet> refers to name of sheet/language in the excel file.
+- The </path/to/download> refers to the location where the data will be downloaded.
+- The <num_of_threads> can be used to control the parallelization.
 
-The above command will start download of all the youtube-url's for the language given, extract the audio (wav) and downsample it (to 16kHz) and name it as per the unique youtube-id.
+The above command will start download of all the youtube-url's for the language given, extract the audio (wav) and downsample it (to 16kHz) and name it as per the unique youtube-id. Subsequent to it, the data will be passed to VAD -> SNR -> Chunking pipeline automatically.
 
-### For Voiced Activity Detection Step
+#### Additional Tools
+### For Voiced Activity Detection Step only
 
 > Required libraries ```webrtcvad, tqdm```
 
@@ -39,7 +40,3 @@ The reason why folder_name has been kept as a seperate entity is to allow parall
 > Usage: ```python chunking.py <chunking_path>```
 
 - All the audio files present in the <chunking_path> will be chunked and saved in the same location. The original files are removed.
-
-### For preparing data for finetuning
-The ```msr_data_post_manifest.py, msr_data_post_manifest.py, mucs_post_manifest.py``` are sample scripts for preparing the datasets (MSR, MUCS and OpenSLR, in that order) ready for finetuning.
-These scripts are to be run for individual language by making appropiate changes in the script paths. 
