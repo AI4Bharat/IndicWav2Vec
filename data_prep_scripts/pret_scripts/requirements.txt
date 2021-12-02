@@ -1,0 +1,9 @@
+joblib==1.0.1
+numpy==1.20.3
+pandas==1.2.5
+pydub==0.25.1
+SoundFile==0.10.3.post1
+tqdm==4.61.1
+webrtcvad==2.0.10
+youtube-dl==2021.6.6
+yt-dlp
