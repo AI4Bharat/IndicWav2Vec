@@ -6,3 +6,4 @@ SoundFile==0.10.3.post1
 tqdm==4.61.1
 webrtcvad==2.0.10
 youtube-dl==2021.6.6
+yt-dlp
