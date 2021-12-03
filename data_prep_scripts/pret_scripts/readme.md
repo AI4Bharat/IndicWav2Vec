@@ -1,6 +1,6 @@
 # Pretraining Data Processing
 
-### For Downloading Data
+### For Downloading and Processing Data
 > Required libraries ```youtube_dl, yt_dlp, pandas, ffmpeg, tqdm```
 
 > Usage: ```bash process_data.sh </path/to/download> <num_of_threads>```
