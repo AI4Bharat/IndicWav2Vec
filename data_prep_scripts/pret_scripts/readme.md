@@ -21,6 +21,12 @@ The above command will start download of all the youtube-url's for the language 
 
 - The <path/to/root/of/NoA> root path to NoA directory.
 
+### For Processing Individual Directories
+1. Download the data using ```bash dw_util.sh <path/to/txt/of/a/particular/language> <path/to/root/where/data/will/be/stored> <#ofthreads>
+2. Pass the data through VAD step as given below
+3. Pass the data through SNR setp as given below
+4. Pass the data through Chunking as given below
+
 
 #### Additional Tools
 ### For Voiced Activity Detection Step only
