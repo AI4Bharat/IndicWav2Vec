@@ -1,8 +1,17 @@
 ### Dataset processing and Manifest creation
 1. Make a new directory and name it (say mucs)
 2. Download and extract the data inside mucs. The data should be extracted in such a way that each folder inside should contain data for a particular language i.e in each language specific folder, it should contain train, valid and test folder and within them the audio + transcript.txt
-The sample structure is given below
-mucs
+Note that the transcript contain entries 
+```
+<filename1> <transcript1>
+<filename2> <transcript2>
+<filename3> <transcript3>
+<filename4> <transcript4>
+...
+```
+
+The sample structure is given below.
+
  ```bash
  mucs(or msr/openslr)
     ├── hindi
