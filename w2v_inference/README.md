@@ -75,4 +75,4 @@ bash infer_auto.sh <cuda_device_no> <data_folder_name> <am_folder_name> <lm_fold
   - {viterbi,kenlm} : Decoding choice, viterbi for greedy and kenlm for decoding with LM
 
 Note that for decoding with LM, the user must specify KENLM_MODEL (path to lm.binary) and LEXICON (path to lexicon.lst).
-Futher one can use the other set of arguements to finetune the parameters for LM decoding.
+Futher one can use the other set of arguements to change the parameters for LM decoding.
