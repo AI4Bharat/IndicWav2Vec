@@ -121,6 +121,9 @@ Scripts for installing, preparing data and training language model is present in
 
 Evaluation Scripts with complete documentation are present in [w2v_inference](https://github.com/AI4Bharat/indic-wav2vec2/tree/main/w2v_inference) folder.
 
+### Link to arXiv
+The link to arXiv can be found [here](https://arxiv.org/abs/2111.03945)
+
 ### License
 
 IndicWav2Vec is MIT-licensed. The license applies to all the pretrained, fine-tuned and language models
