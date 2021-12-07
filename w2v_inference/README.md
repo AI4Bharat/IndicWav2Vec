@@ -62,3 +62,17 @@ cd scripts
 bash infer_auto.sh <cuda_device_no> <data_folder_name> <am_folder_name> <lm_folder_name> <lm_weight> <word_score> <beam_width>
 ```
 > Scripts to be run to reproduce results from **paper** are provided [here](https://github.com/AI4Bharat/indic-wav2vec2/blob/main/w2v_inference/scripts/paper_results.sh).
+
+## Single File Inference
+```Usage: 
+   cd scripts
+   python sfi.py [--audio-file AUDIO_FILE] [--ft-model FT_MODEL] [--w2l-decoder {viterbi,kenlm}] [--lexicon LEXICON] [--kenlm-model KENLM_MODEL]
+              [--beam-threshold BEAM_THRESHOLD] [--beam-size-token BEAM_SIZE_TOKEN] [--beam BEAM] [--word-score WORD_SCORE] [--lm-weight LM_WEIGHT]
+              [--unk-weight UNK_WEIGHT] [--sil-weight SIL_WEIGHT] [--nbest NBEST]
+  ```
+  - AUDIO_FILE : Path to Audio clip (preferable in wav)
+  - FT_MODEL : Path to finetuned model
+  - {viterbi,kenlm} : Decoding choice, viterbi for greedy and kenlm for decoding with LM
+
+Note that for decoding with LM, the user must specify KENLM_MODEL (path to lm.binary) and LEXICON (path to lexicon.lst).
+Futher one can use the other set of arguements to finetune the parameters for LM decoding.
