@@ -124,6 +124,19 @@ Evaluation Scripts with complete documentation are present in [w2v_inference](ht
 ### Link to arXiv
 The link to arXiv can be found [here](https://arxiv.org/abs/2111.03945)
 
+### Cite 
+
+Please cite as:
+
+``` bibtex
+@inproceedings{javed2021building,
+    title = {Towards Building ASR Systems for the Next Billion Users},
+    author = {Tahir Javed and Sumanth Doddapaneni and Abhigyan Raman and Kaushal Santosh Bhogale and Gowtham Ramesh and Anoop Kunchukuttan and Pratyush Kumar and Mitesh M. Khapra},
+    booktitle = "Proceedings of the AAAI Conference on Artificial Intelligence",
+    year = "2022 (to appear)",
+}
+```
+
 ### License
 
 IndicWav2Vec is MIT-licensed. The license applies to all the pretrained, fine-tuned and language models
