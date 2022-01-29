@@ -1,0 +1,174 @@
+
+{
+    "en":{
+            "model_path":"/new_disk/models/en/en.pt",
+            "lm_details" : 
+                         {
+                        "nbest":1, 
+                        "lexicon":"/home/cs20d700/flask_dep/app/lm_new/lexicon.lst", 
+                        "kenlm_model":"/home/cs20d700/flask_dep/app/lm_new/lm.binary", 
+                        "beam_size_token": 100, 
+                        "beam":8, 
+                        "beam_threshold":25,
+                        "lm_weight":1, 
+                        "word_score":0.5, 
+                        "sil_weight":0.0 
+                        },
+            "lm_usage" : "True"
+                
+         },
+    "or":{
+            "model_path":"/new_disk/models/or/or.pt",
+            "lm_details" :
+                         {
+                        "nbest":1,
+                        "lexicon":"/new_disk/models/or/lexicon.lst",
+                        "kenlm_model":"/new_disk/models/or/lm.binary",
+                        "beam_size_token": 100,
+                        "beam":8,
+                        "beam_threshold":25,
+                        "lm_weight":1,
+                        "word_score":0.5,
+                        "sil_weight":0.0
+                        },
+            "lm_usage" : "True"
+
+         } ,
+    "hi":{
+            "model_path":"/new_disk/models/hi/hi.pt",
+            "lm_details" :
+                         {
+                        "nbest":1,
+                        "lexicon":"/new_disk/models/hi/lexicon.lst",
+                        "kenlm_model":"/new_disk/models/hi/lm.binary",
+                        "beam_size_token": 100,
+                        "beam":8,
+                        "beam_threshold":25,
+                        "lm_weight":1,
+                        "word_score":0.5,
+                        "sil_weight":0.0
+                        },
+            "lm_usage" : "True"
+
+         } ,
+    "ta":{
+            "model_path":"/new_disk/models/ta/ta.pt",
+            "lm_details" :
+                         {
+                        "nbest":1,
+                        "lexicon":"/new_disk/models/ta/lexicon.lst",
+                        "kenlm_model":"/new_disk/models/ta/lm.binary",
+                        "beam_size_token": 100,
+                        "beam":8,
+                        "beam_threshold":25,
+                        "lm_weight":1,
+                        "word_score":0.5,
+                        "sil_weight":0.0
+                        },
+            "lm_usage" : "True"
+
+         } ,
+    "te":{
+            "model_path":"/new_disk/models/te/te.pt",
+            "lm_details" :
+                         {
+                        "nbest":1,
+                        "lexicon":"/new_disk/models/te/lexicon.lst",
+                        "kenlm_model":"/new_disk/models/te/lm.binary",
+                        "beam_size_token": 100,
+                        "beam":8,
+                        "beam_threshold":25,
+                        "lm_weight":1,
+                        "word_score":0.5,
+                        "sil_weight":0.0
+                        },
+            "lm_usage" : "True"
+
+         } ,
+    "gu":{
+            "model_path":"/new_disk/models/gu/gu.pt",
+            "lm_details" :
+                         {
+                        "nbest":1,
+                        "lexicon":"/new_disk/models/gu/lexicon.lst",
+                        "kenlm_model":"/new_disk/models/gu/lm.binary",
+                        "beam_size_token": 100,
+                        "beam":8,
+                        "beam_threshold":25,
+                        "lm_weight":1,
+                        "word_score":0.5,
+                        "sil_weight":0.0
+                        },
+            "lm_usage" : "True"
+
+         } ,
+    "mr":{
+            "model_path":"/new_disk/models/mr/mr.pt",
+            "lm_details" :
+                         {
+                        "nbest":1,
+                        "lexicon":"/new_disk/models/mr/lexicon.lst",
+                        "kenlm_model":"/new_disk/models/mr/lm.binary",
+                        "beam_size_token": 100,
+                        "beam":8,
+                        "beam_threshold":25,
+                        "lm_weight":1,
+                        "word_score":0.5,
+                        "sil_weight":0.0
+                        },
+            "lm_usage" : "True"
+
+         } ,
+    "ne":{
+            "model_path":"/new_disk/models/ne/ne.pt",
+            "lm_details" :
+                         {
+                        "nbest":1,
+                        "lexicon":"/new_disk/models/ne/lexicon.lst",
+                        "kenlm_model":"/new_disk/models/ne/lm.binary",
+                        "beam_size_token": 100,
+                        "beam":8,
+                        "beam_threshold":25,
+                        "lm_weight":1,
+                        "word_score":0.5,
+                        "sil_weight":0.0
+                        },
+            "lm_usage" : "True"
+
+         },
+    "bn":{
+            "model_path":"/new_disk/models/bn/bn.pt",
+            "lm_details" :
+                         {
+                        "nbest":1,
+                        "lexicon":"/new_disk/models/bn/lexicon.lst",
+                        "kenlm_model":"/new_disk/models/bn/lm.binary",
+                        "beam_size_token": 100,
+                        "beam":8,
+                        "beam_threshold":25,
+                        "lm_weight":1,
+                        "word_score":0.5,
+                        "sil_weight":0.0
+                        },
+            "lm_usage" : "True"
+
+         },
+    "si":{
+            "model_path":"/new_disk/models/si/si.pt",
+            "lm_details" :
+                         {
+                        "nbest":1,
+                        "lexicon":"/new_disk/models/si/lexicon.lst",
+                        "kenlm_model":"/new_disk/models/si/lm.binary",
+                        "beam_size_token": 100,
+                        "beam":8,
+                        "beam_threshold":25,
+                        "lm_weight":1,
+                        "word_score":0.5,
+                        "sil_weight":0.0
+                        },
+            "lm_usage" : "False"
+
+         }           
+
+}

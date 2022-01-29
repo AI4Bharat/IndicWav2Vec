@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>AI4B Speech API</title>
+	<!-- production version, optimized for size and speed -->
+	<script defer src="https://use.fontawesome.com/6da64fcf5b.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+<body>
+	<section class="section container has-text-centered" id="app">
+		<figure class="image is-64x64 is-centered">
+			<img src="logo.png">
+		</figure>
+		<p class="title is-1" style="color: #E78A28">
+			Indic-Wav2Vec Speech API
+		</p>
+		<p class="subtitle">
+			Real-time inference with Indic-Wav2Vec!
+		</p>
+
+		<hr>
+		<br>
+		
+		<div class="is-half">
+
+			<div class="control">
+				<button v-on:click="recordData" class="button is-large" v-bind:class="[recordStatusClass]">
+					{{ record }} &nbsp; <img width="28" height="28" src="microphone.png" alt="mic"> </button>
+			</div>
+
+			<br>
+			<h2>OR</h2>
+			<br>
+			<br>
+			
+			<div class="file is-centered is-medium has-name is-boxed is-link">
+				<label class="file-label">
+					<input class="file-input" type="file" name="file" id="file" ref="file"
+							v-on:change="handleFileUpload" accept="audio/*" capture>
+					<span class="file-cta">
+						<!-- <p class="file-icon">
+							<i class="fas fa-upload"></i>
+						</p> -->
+						<span class="file-label">
+						Upload .wav File
+						</span>
+					</span>
+					<span class="file-name">
+						{{ file_message }}
+					</span>
+				</label>
+			</div>			
+
+			<br>
+			
+			<div v-if="process">
+				<progress class="progress is-small is-warning" max="100">15%</progress>
+			</div>
+
+			<br>
+			<h1 class="title is-4">Transcription</h1>
+			<!-- <button class="button is-light is-medium" v-bind:class="[statusClass]">{{ transcription }}</button> -->
+			<textarea class="textarea" placeholder="The transcription will appear here.">{{ transcription }}</textarea>
+			<br><br>
+
+			<div>{{ transcription_time }}</div>
+
+		</div>
+		
+	</section>
+
+</body>
+
+<!-- inserting these scripts at the end to be able to use all the elements in the DOM --> 
+<script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+
+<script>
+	var app = new Vue({
+		el: '#app',
+		data: {
+			message: 'Hello Vue!',
+			file_message: 'No file uploaded',
+			picked: 'Testing',
+			transcription: 'The transcription will appear here.',
+			statusClass: 'is-primary',
+			recordStatusClass: 'is-link',
+			process: false,
+			record: 'Record',
+			transcription_time: '',
+			isRecording: false,
+			rec: null,
+		},
+		methods: {
+			handleFileUpload: function(){
+				this.file_message = this.$refs.file.files[0].name;
+				console.log(this.$refs.file.files[0])
+				this.message = 'Calling from same function!';
+				this.submitFile();
+			},
+			submitFile: function(){
+				/*
+				Initialize the form data
+				*/
+				this.statusClass='is-warning';
+				this.transcription='Processing..';
+				this.process=true;
+				let formData = new FormData();
+				/*
+				Add the form data we need to submit
+				*/
+				
+				formData.append('file', this.$refs.file.files[0]);
+				console.log(formData);
+				/*
+				Make the request to the POST /single-file URL
+				*/
+				axios.post( 'https://34.65.180.101:5000/infer_en',
+					formData,
+						{
+						headers: {
+							'Content-Type': 'multipart/form-data'
+						}
+					}
+				).then(response => {
+					this.transcription = response.data.text
+					this.transcription_time = 'The inference took '+response.data.duration+' seconds.'
+					this.statusClass = 'is-success'
+					this.statusText='Upload .wav file'
+					this.process=false
+				})
+				.catch(error => {
+					console.log(error)
+					this.statusClass = 'is-danger'
+					this.statusText='Upload .wav file'
+					this.transcription = 'Please check console.'
+					this.process=false
+				})
+			},
+			sendData: function(data) {
+				let formData = new FormData();
+				console.log(formData);
+				formData.append('file', data, 'data.wav');
+				formData.append('title', 'data.wav');
+				console.log(formData);
+
+				this.statusClass='is-warning';
+				this.transcription='Processing..';
+				this.process=true;
+
+				axios.post( 'https://34.65.180.101:5000/infer_en',
+					formData,
+						{
+						headers: {
+							'Content-Type': 'multipart/form-data'
+						}
+					}
+				).then(response => {
+					this.transcription = response.data.text
+					this.transcription_time = 'The inference took '+response.data.duration+' seconds.'
+					this.statusClass = 'is-success'
+					this.statusText='Upload .wav file'
+					this.process=false
+				})
+				.catch(error => {
+					console.log(error)
+					this.statusClass = 'is-danger'
+					this.statusText='Upload .wav file'
+					this.transcription = 'Please check console.'
+					this.process=false
+				})
+				//Chrome inspector shows that the post data includes a file and a title.
+				// $.ajax({
+				// 	type: 'POST',
+				// 	url: 'http://127.0.0.1:6000/save-record',
+				// 	data: form,
+				// 	cache: false,
+				// 	processData: false,
+				// 	contentType: false
+				// }).done(function(data) {
+				// 	console.log(data);
+				// });
+			},
+			handleRecord: function(stream){
+				this.rec = new MediaRecorder(stream);
+				console.log("Recording object initialised.")
+				this.rec.ondataavailable = e => {
+					audioChunks.push(e.data);
+					if (this.rec.state == "inactive") {
+						let blob = new Blob(audioChunks, {type: 'audio/wav'});
+						this.sendData(blob);
+					}
+				}
+			},
+			initializeRecord: function(){
+				navigator
+					.mediaDevices
+					.getUserMedia({audio: true})
+					.then(stream => { 
+						this.handleRecord(stream)
+					});
+			},
+			startRecording: function(){
+				console.log('Recording is started..');
+				audioChunks = [];
+				this.recordStatusClass = 'is-danger';
+				this.record = 'Stop';
+				this.rec.start();
+			},
+			stopRecording: function(){
+				console.log("Recording is stopped.");
+				this.recordStatusClass = 'is-link';
+				this.record = 'Record';
+				this.rec.stop();
+			},
+			recordData: function(){
+				if (this.isRecording == false){
+					this.isRecording = true;
+					this.startRecording();
+				}
+				else{
+					this.stopRecording();
+					this.isRecording = false;
+				}
+			}
+		},
+		created: function(){
+			console.log("Created function called. yay!");
+			this.initializeRecord();
+		}
+	})
+</script>
+
+</html>

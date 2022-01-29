@@ -1,0 +1,19 @@
+{
+    "en":{
+            "model_path":"/new_disk/models/en/en.pt",
+            "lm_details" : 
+                         {
+                        "nbest":1, 
+                        "lexicon":"/new_disk/models/en/lexicon.lst", 
+                        "kenlm_model":"/new_disk/models/en/lm.binary", 
+                        "beam_size_token": 100, 
+                        "beam":8, 
+                        "beam_threshold":25,
+                        "lm_weight":1, 
+                        "word_score":0.5, 
+                        "sil_weight":0.0 
+                        },
+            "lm_usage" : "True"
+                
+         }
+}
