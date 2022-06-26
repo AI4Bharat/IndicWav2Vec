@@ -26,36 +26,37 @@ Added more documentation
 
 
 ## Table of contents
-- [Resources](#resources)
-  - [Download models](#download-models)
-  - [Using hosted APIs](#using-hosted-apis)
-  - [Accessing on ULCA](#accessing-on-ulca)
-- [Quick start](#running-inference)
-  - [Python Inference](#python-inference)
-  - [Huggingface inference](#hugging-face)
-- [Tutorials](#training-section)
-  - [Setting up your environment](#setting-up-your-environment)
-  - [Pretraining](#pretraining)
-    - [Data preparation](#preparing-and-processing-data)
+- [IndicWav2Vec](#indicwav2vec)
+  - [Benchmarks](#benchmarks)
+  - [Updates](#updates)
+  - [Table of contents](#table-of-contents)
+  - [Resources](#resources)
+    - [Download Models](#download-models)
+    - [Hosted API Usage](#hosted-api-usage)
+    - [Accessing on ULCA](#accessing-on-ulca)
+  - [Quick start](#quick-start)
+    - [Python Inference](#python-inference)
+    - [Huggingface Inference](#huggingface-inference)
+  - [Tutorials](#tutorials)
+    - [Setting up your environment](#setting-up-your-environment)
+    - [Pretraining](#pretraining)
+      - [Data preparation](#data-preparation)
+      - [Manifest Creation](#manifest-creation)
     - [Training procedure and code](#training-procedure-and-code)
-  - [Finetuning](#finetuning)
-    - [Data preparation](#data-processing)
-    - [Finetuning procedure and code](#finetuning-procedure-and-code)
-    - [Finetuning model on your data](#finetuning-model-on-your-data)
-  - [Language modelling](#language-modelling)
-    - Data preparation
-    - Training details
-  - [Evaluating ASR models](#evaluating-trained-model)
-  - [Model Exporting]()
-    - Huggingface
-    - ONNX/Torchscript
-  - [Deployment](#deployment)
-    - Server (Flask)
-    - Server (Torchserve)
-    - Mobile (Coming soon..)
-- [License](#license)
-- [Contributors](#contributors)
-- [Contact](#contact)
+    - [Finetuning](#finetuning)
+      - [Data preparation](#data-preparation-1)
+      - [Finetuning procedure and code](#finetuning-procedure-and-code)
+      - [Finetuning procedure and code](#finetuning-procedure-and-code-1)
+    - [Language Modelling (LM)](#language-modelling-lm)
+      - [Data preparation](#data-preparation-2)
+      - [Training details](#training-details)
+    - [Evaluating ASR models](#evaluating-asr-models)
+    - [Model exporting](#model-exporting)
+    - [Deployment](#deployment)
+  - [Cite](#cite)
+  - [License](#license)
+  - [Contributors](#contributors)
+  - [Contact](#contact)
 ## Resources
 
 ### Download Models
@@ -386,11 +387,21 @@ Configs for both the models are provided in the [finetune_configs]() directory
 #### Finetuning procedure and code
 
 
-### Language Modelling
+### Language Modelling (LM)
+We train 6-grams Statistical LM using [KenLM library](https://kheafield.com/code/kenlm/). 
 #### Data preparation
- - To be filled
+- Prepare training manifest using [fairseq](https://github.com/pytorch/fairseq/tree/master/examples/wav2vec) and copy its path.
+- Prepare clean_dump.txt containing ```"\n"``` separated rows of text data. 
+- Add ```dict.txt``` containing ```comma(,)``` separated rows of characters and its' index.  
+- Add these two files to the ```{lang}``` folder, where ```lang``` denotes the language for which lm is to be trained.
+> Command to clean transcripts and prepare lexicon for training:
+```
+python utils/clean_corpus.py -d=<lm directory path> -l=<lang> --transcript=<speech transcript folder path> --st=<start code of lang> --en=<end code of lang> --top_k=<'k' most frequent words for vocab>
+```
 #### Training details
- - To be filled
+> Run lm-training: ```bash scripts/train_lm.sh <lm directory path> <lang>```. 
+
+Ouput will be generate at: ```"<lm directory path>/<lang>"```.
 
 ### Evaluating ASR models
 - To be filled
