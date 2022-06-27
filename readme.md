@@ -195,7 +195,7 @@ Our models can be directly accessed on [ULCA](https://bhashini.gov.in/ulca/model
   ```
 - Installing Fairseq
   ```
-  git clone https://github.com/pytorch/fairseq
+  git clone https://github.com/AI4Bharat/fairseq.git
   cd fairseq
   pip install --editable ./
 
