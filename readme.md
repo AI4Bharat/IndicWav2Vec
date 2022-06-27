@@ -63,22 +63,22 @@ Added more documentation
 Finetuned Models
 |Language |Acoustic Model | Dictionary | Language Model | Lexicon | Wandb |
 | - | - |  - | - | - | - |
-| Bengali | [fairseq](https://storage.googleapis.com/indicwav2vec-public/fine-tuning-ckpts/bengali_large.pt) \| [[hf]]()| [link]() |  [KenLM]() | [link]() | [link]() |
-| Gujarati | [fairseq](https://storage.googleapis.com/indicwav2vec-public/fine-tuning-ckpts/bengali_large.pt) / [hf]() | [link]() |  [KenLM]() | [link]() | [link]() |
-| Hindi | [fairseq](https://storage.googleapis.com/indicwav2vec-public/fine-tuning-ckpts/bengali_large.pt) / [hf]() | [link]() |  [KenLM]() | [link]() | [link]() |
-| Marathi | [fairseq](https://storage.googleapis.com/indicwav2vec-public/fine-tuning-ckpts/bengali_large.pt) / [hf]() | [link]() |  [KenLM]() | [link]() | [link]() |
-| Nepali | [fairseq](https://storage.googleapis.com/indicwav2vec-public/fine-tuning-ckpts/bengali_large.pt) / [hf]() | [link]() |  [KenLM]() | [link]() | [link]() |
+| Bengali | [fairseq](https://storage.googleapis.com/indicwav2vec-public/fine-tuning-ckpts/bengali_large.pt) \| [[hf]]()| [link]() |  [KenLM](https://storage.googleapis.com/indicwav2vec-public/language-models/bengali.zip) | [link](https://storage.googleapis.com/indicwav2vec-public/language-models/bengali.zip) | [link]() |
+| Gujarati | [fairseq](https://storage.googleapis.com/indicwav2vec-public/fine-tuning-ckpts/gujarati_large.pt) / [hf]() | [link]() |  [KenLM](https://storage.googleapis.com/indicwav2vec-public/language-models/guharati.zip) | [link](https://storage.googleapis.com/indicwav2vec-public/language-models/guharati.zip) | [link]() |
+| Hindi | [fairseq](https://storage.googleapis.com/indicwav2vec-public/fine-tuning-ckpts/hindi_large.pt) / [hf]() | [link]() |  [KenLM](https://storage.googleapis.com/indicwav2vec-public/language-models/hindi.zip) | [link](https://storage.googleapis.com/indicwav2vec-public/language-models/hindi.zip) | [link]() |
+| Marathi | [fairseq](https://storage.googleapis.com/indicwav2vec-public/fine-tuning-ckpts/marathi_large.pt) / [hf]() | [link]() |  [KenLM](https://storage.googleapis.com/indicwav2vec-public/language-models/marathi.zip) | [link](https://storage.googleapis.com/indicwav2vec-public/language-models/marathi.zip) | [link]() |
+| Nepali | [fairseq](https://storage.googleapis.com/indicwav2vec-public/fine-tuning-ckpts/nepali_large.pt) / [hf]() | [link]() |  [KenLM](https://storage.googleapis.com/indicwav2vec-public/language-models/nepali.zip) | [link](https://storage.googleapis.com/indicwav2vec-public/language-models/nepali.zip) | [link]() |
 | Odia | [fairseq](https://storage.googleapis.com/indicwav2vec-public/fine-tuning-ckpts/bengali_large.pt) / [hf]() | [link]() |  [KenLM]() | [link]() | [link]() |
-| Tamil | [fairseq](https://storage.googleapis.com/indicwav2vec-public/fine-tuning-ckpts/bengali_large.pt) / [hf]() | [link]() |  [KenLM]() | [link]() | [link]() |
-| Telugu | [fairseq](https://storage.googleapis.com/indicwav2vec-public/fine-tuning-ckpts/bengali_large.pt) / [hf]() | [link]() |  [KenLM]() | [link]() | [link]() |
-| Sinhala | [fairseq](https://storage.googleapis.com/indicwav2vec-public/fine-tuning-ckpts/bengali_large.pt) / [hf]() | [link]() |  [KenLM]() | [link]() | [link]() |
+| Tamil | [fairseq](https://storage.googleapis.com/indicwav2vec-public/fine-tuning-ckpts/odia_large.pt) / [hf]() | [link]() |  [KenLM](https://storage.googleapis.com/indicwav2vec-public/language-models/odia.zip) | [link](https://storage.googleapis.com/indicwav2vec-public/language-models/odia.zip) | [link]() |
+| Telugu | [fairseq](https://storage.googleapis.com/indicwav2vec-public/fine-tuning-ckpts/telugu_large.pt) / [hf]() | [link]() |  [KenLM](https://storage.googleapis.com/indicwav2vec-public/language-models/telugu.zip) | [link](https://storage.googleapis.com/indicwav2vec-public/language-models/telugu.zip) | [link]() |
+| Sinhala | [fairseq](https://storage.googleapis.com/indicwav2vec-public/fine-tuning-ckpts/sinhala_large.pt) / [hf]() | [link]() |  [KenLM]() | [link]() | [link]() |
 
 
 Pretrained Model(*)
 |Name |Model Checkpoint | 
 | - | - |  
-| IndicWav2Vec Large | [fairseq](https://storage.googleapis.com/indicwav2vec-public/fine-tuning-ckpts/bengali_large.pt) | 
-| IndicWav2Vec Base | [fairseq](https://storage.googleapis.com/indicwav2vec-public/fine-tuning-ckpts/bengali_large.pt) | 
+| IndicWav2Vec Large | [fairseq](https://storage.googleapis.com/indicwav2vec-public/pretraining-ckpts/indicwav2vec-large.pt) | 
+| IndicWav2Vec Base | [fairseq](https://storage.googleapis.com/indicwav2vec-public/pretraining-ckpts/indicwav2vec-base.pt) | 
 
 (* Trained on 40 Indian Languages, more details can be found [here](https://www.aaai.org/AAAI22Papers/AAAI-12428.JavedT.pdf))
 
@@ -87,10 +87,15 @@ Pretrained Model(*)
 Our models are hosted at the following API end points. 
 | Langugage| Language Code | API End point |
 | - | - | - |
-| Hindi | hi | [localhost:4999/infer_ulca_hi](localhost:4999/infer_ulca_hi) |
-| Tamil | ta | [localhost:4999/infer_ulca_hi](localhost:4999/infer_ulca_hi) |
-| Telugu | te | [localhost:4999/infer_ulca_hi](localhost:4999/infer_ulca_hi) |
-| Gujarati | gu| [localhost:4999/infer_ulca_hi](localhost:4999/infer_ulca_hi) |
+| Bengali | bn | [https://34.65.180.101:5000/infer_ulca_bn](https://34.65.180.101:5000/infer_ulca_bn) |
+| Gujarati | gu | [https://34.65.180.101:5000/infer_ulca_gu](https://34.65.180.101:5000/infer_ulca_gu) |
+| Hindi | hi | [https://216.48.182.174:4999/infer_ulca_hi](https://216.48.182.174:4999/infer_ulca_hi) |
+| Marathi | mr| [https://34.65.180.101:5000/infer_ulca_mr](https://34.65.180.101:5000/infer_ulca_mr) |
+| Nepali | ne| [https://34.65.180.101:5000/infer_ulca_ne](https://34.65.180.101:5000/infer_ulca_ne) |
+| Odia | or| [https://34.65.180.101:5000/infer_ulca_or](https://34.65.180.101:5000/infer_ulca_or) |
+| Tamil | ta| [https://34.65.180.101:5000/infer_ulca_ta](https://34.65.180.101:5000/infer_ulca_ta) |
+| Telugu | te| [https://34.65.180.101:5000/infer_ulca_te](https://34.65.180.101:5000/infer_ulca_te) |
+| Sinhala | si| [https://34.65.180.101:5000/infer_ulca_si](https://34.65.180.101:5000/infer_ulca_si) |
 
 
 Input API data format
@@ -227,10 +232,39 @@ Our models can be directly accessed on [ULCA](https://bhashini.gov.in/ulca/model
 ### Pretraining
 
 #### Data preparation
-- Downloading Audio Dataset (Unlabelled)
-- Voiced Activity Detection
-- SNR Filtering
-- Chunking
+- Step 1: Downloading Audio Dataset (Unlabelled)
+  ```
+  bash dw_util.sh <path_to_urls> <data_store_path> <num_of_threads>
+  ```
+  The ```<data_store_path>``` refers to the location where the data will be downloaded. The ```<num_of_threads>``` can be used to control the parallelization.
+- Step 2: Voiced Activity Detection
+  ```
+  python vad.py <data_read_dir> <data_write_dir> <folder_name>
+  ```
+  The ```<data_read_dir>``` is the root of downloaded files which contain downloaded data in language-named-folders.
+
+  The ```<data_write_dir>``` is the location for saving the data after VAD step.
+
+  The ```<folder_name>``` refers to the names of language-named-folder for which you want to perform this VAD step.
+
+  *The reason why folder_name has been kept as a seperate entity is to allow parallelization because one can process multiple folders simultaneously.
+- Step 3: SNR Filtering
+  ```
+  python snr.py <data_path> <folder/language_name>
+  ```
+  where the ```<data_path>``` refers to the root path containing all the audios in language specific folders. Here it refers to the``` <data_write_dir>``` from the previous step. The ```<folder/language_name>``` refers to name of language_specific folder for which snr_filtering needs to be done. The audio data that is rejected is moved in the folder **"snr_rejected"**, which is created automatically.
+
+- Step 4: Chunking
+  ```
+  python chunking.py <chunking_path>
+  ```
+  All the audio files present in the ```<chunking_path>``` will be chunked and saved in the same location. The original files are **removed**.
+
+Or alternatively users can use the one single script ```process_data.sh``` to run the entire pipeline
+- Usage: ```bash process_data.sh </path/to/download> <num_of_threads>```
+- The ```</path/to/download>``` refers to the location where the data will be downloaded.
+- The ```<num_of_threads>``` can be used to control the parallelization.
+- Please make sure that the relative path is urls directory is ```../urls``` from the script.
 
 #### Manifest Creation
 For creating language-wise pretraining manifest
@@ -265,36 +299,33 @@ For pretraining the model we do multi-node training and schedule the runs with s
 
 Following is the invocation script for training IndicWav2Vec base starting from Wav2Vec2.0 English base ckeckpoint
 ```
-$ sbatch --job-name <NAME> --gres gpu:<N_GPU_PER_NODE> --cpus-per-task <N_CPUS> \
-    --nodes <N_NODES> --ntasks-per-node <N_TASKS> \
-    --wrap "srun --output train.log.node%t --error train.stderr.node%t.%j \
-        $(which fairseq-hydra-train) \
-        task.data=/path/to/manifest/directory \
-        common.wandb_project=<wandb project name> \
-        task._name=temp_sampled_audio_pretraining \
-        +task.sampling_alpha=0.7 \
-        common.log_interval=200 \
-        common.log_format=tqdm \
-        dataset.max_tokens=3000000 \
-        common.user_dir=/path/to/custom_task/directory \
-        checkpoint.save_dir=/path/to/save/model/checkpoints \
-        checkpoint.restore_file=/path/to wav2vec2-english-base/checkpoint.pt \
-        +optimization.update_freq='[2]' \
-        optimization.clip_norm=0.5 \
-        checkpoint.reset_optimizer=true \
-        distributed_training.distributed_world_size=<total GPUs> \
-        distributed_training.distributed_port=$PORT \
-        --config-dir /path/to/configs/directory \
-        --config-name wav2vec2_base_librispeech"
+fairseq-hydra-train \
+  task.data=/path/to/manifest/directory \
+  common.wandb_project=<wandb project name> \
+  task._name=temp_sampled_audio_pretraining \
+  +task.sampling_alpha=0.7 \
+  common.log_interval=200 \
+  common.log_format=tqdm \
+  dataset.max_tokens=3000000 \
+  common.user_dir=/path/to/custom_task/directory \
+  checkpoint.save_dir=/path/to/save/model/checkpoints \
+  checkpoint.restore_file=/path/to wav2vec2-english-base/checkpoint.pt \
+  +optimization.update_freq='[2]' \
+  optimization.clip_norm=0.5 \
+  checkpoint.reset_optimizer=true \
+  distributed_training.distributed_world_size=<total GPUs> \
+  distributed_training.distributed_port=$PORT \
+  --config-dir /path/to/configs/directory \
+  --config-name wav2vec2_base_librispeech"
 ```
 
 For Large model we override the above configuration with
 
 ```
-checkpoint.restore_file=/path/to wav2vec2-english-large/checkpoint.pt \
-+optimization.update_freq='[6]' \
-lr_scheduler.warmup_updates=0 \
---config-name wav2vec2_large_librivox"
+  checkpoint.restore_file=/path/to wav2vec2-english-large/checkpoint.pt \
+  +optimization.update_freq='[6]' \
+  lr_scheduler.warmup_updates=0 \
+  --config-name wav2vec2_large_librivox"
 ```
 Configs for both the models are provided in the configs directory
 
@@ -360,27 +391,24 @@ Configs for both the models are provided in the configs directory
 Following is the invocation script for finetuning IndicWav2Vec large on a particular language
 
 ```
-sbatch --job-name <NAME> --gres gpu:<N_GPU_PER_NODE> --cpus-per-task <N_CPUS> \
-    --nodes <N_NODES> --ntasks-per-node <N_TASKS> \
-    --wrap "srun --output finetune.log.node%t --error finetune.stderr.node%t.%j \
-        $(which fairseq-hydra-train) \
-        task.data=/path/to/finetune/manifest/directory/for/a/particular/language \
-        common.wandb_project=<wandb project name> \
-        model.w2v_path=/path/to/pretrained/model_large.pt \
-        common.log_interval=50 \
-        common.log_format=tqdm \
-        dataset.max_tokens=1000000 \
-        checkpoint.save_dir=/path/to/save/model/fine_tune_checkpoints \
-        +optimization.update_freq='[1]' \
-        distributed_training.distributed_world_size=<total GPUs> \
-        --config-dir /path/to/configs/directory \
-        --config-name ai4b_xlsr"
+fairseq-hydra-train \
+  task.data=/path/to/finetune/manifest/directory/for/a/particular/language \
+  common.wandb_project=<wandb project name> \
+  model.w2v_path=/path/to/pretrained/model_large.pt \
+  common.log_interval=50 \
+  common.log_format=tqdm \
+  dataset.max_tokens=1000000 \
+  checkpoint.save_dir=/path/to/save/model/fine_tune_checkpoints \
+  +optimization.update_freq='[1]' \
+  distributed_training.distributed_world_size=<total GPUs> \
+  --config-dir /path/to/configs/directory \
+  --config-name ai4b_xlsr"
 ```
 For IndicWav2Vec Base model we override the above configuration with
 
 ```
-        model.w2v_path=/path/to/pretrained/model_base.pt \
-        --config-name ai4b_base"
+  model.w2v_path=/path/to/pretrained/model_base.pt \
+  --config-name ai4b_base"
 ```
 Configs for both the models are provided in the [finetune_configs]() directory
 
@@ -404,7 +432,11 @@ python utils/clean_corpus.py -d=<lm directory path> -l=<lang> --transcript=<spee
 Ouput will be generate at: ```"<lm directory path>/<lang>"```.
 
 ### Evaluating ASR models
-- To be filled
+- Evaluation using fairseq (infer.py)
+  ```
+
+  ```
+
 
 ### Model exporting
  - Huggingface
