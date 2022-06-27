@@ -434,6 +434,15 @@ Ouput will be generate at: ```"<lm directory path>/<lang>"```.
 ### Evaluating ASR models
 - Evaluation using fairseq (infer.py)
   ```
+  python3 fairseq/speech_recognition/infer.py ${manifest_path} --task audio_finetuning \
+  --nbest 1 --path ${checkpoint_path} --gen-subset ${valid|test} --results-path ${result_path} --w2l-decoder {viterbi | kenlm} \
+  --lm-weight 0 --word-score 0 --sil-weight 0 --criterion ctc --labels ltr --max-tokens 5000000 \
+  --post-process letter
+  ```
+  This is default fairseq evaluation command and more documentation about this command can be seen [here]()
+- Evaluations using scripts
+  ```
+  
 
   ```
 
