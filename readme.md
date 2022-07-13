@@ -77,8 +77,8 @@ Finetuned Models
 Pretrained Model(*)
 |Name |Model Checkpoint | 
 | - | - |  
-| IndicWav2Vec Large | [fairseq](https://storage.googleapis.com/indicwav2vec-public/pretraining-ckpts/indicwav2vec-large.pt) | 
-| IndicWav2Vec Base | [fairseq](https://storage.googleapis.com/indicwav2vec-public/pretraining-ckpts/indicwav2vec-base.pt) | 
+| IndicWav2Vec Large | [fairseq](https://storage.googleapis.com/ai4b-public-data/indic-wav2vec/checkpoints/pretraining/indicwav2vec-large.pt) | 
+| IndicWav2Vec Base | [fairseq](https://storage.googleapis.com/ai4b-public-data/indic-wav2vec/checkpoints/pretraining/indicwav2vec-base.pt) | 
 
 (* Trained on 40 Indian Languages, more details can be found [here](https://www.aaai.org/AAAI22Papers/AAAI-12428.JavedT.pdf))
 
