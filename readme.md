@@ -440,11 +440,6 @@ Ouput will be generate at: ```"<lm directory path>/<lang>"```.
   --post-process letter
   ```
   This is default fairseq evaluation command and more documentation about this command can be seen [here]()
-- Evaluations using scripts
-  ```
-  
-
-  ```
 
 
 ### Model exporting
