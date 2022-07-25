@@ -35,13 +35,7 @@ def str2bool(v):
     else:
         raise argparse.ArgumentTypeError('Boolean value expected.')
 
-# Setup logging
-# import logging
-# logging.basicConfig(level=logging.INFO,
-#                    filename='BASIC.log',
-#                    format='%(asctime)s %(name)s %(levelname)s:%(message)s')
-
-# logger = logging.getLogger(__name__)
+# Setup logging (TODO)
 
 # Define all GLOBAL Vars
 DIGITS_SCRIPT = {
@@ -279,7 +273,6 @@ def clean_and_stats(input, lang, allowed_chars_dict, set_digits, ssplit=False, r
         num_invalid_words += invalid 
         extra_word_list.append(modified_words_list[i])
 
-
     if ssplit:
         stats_dict = {
             "clean": norm_out,
@@ -362,7 +355,6 @@ def filter_and_clean(dataframe, valid_chars, drop_rows="off"):
     valid_str = "".join(list(valid_chars))
     valid_chrs = r'[^'+valid_str+']'
     valid_regex = re.compile(valid_chrs)
-
     try:
         from pandarallel import pandarallel
         pandarallel.initialize()
@@ -371,7 +363,8 @@ def filter_and_clean(dataframe, valid_chars, drop_rows="off"):
     except:
         filtered_sents = df["clean"].apply(lambda x: " ".join(re.sub(valid_regex, "", str(x)).split()))
     
-    words_list = list(itertools.chain.from_iterable(filtered_sents))
+    # words_list = list(itertools.chain.from_iterable(filtered_sents))
+    words_list = " ".join(filtered_sents).split()
     counter = Counter(words_list)
     top_counter = counter.most_common()
     df_counter = pd.DataFrame(top_counter, columns=['word', 'freq'])
@@ -447,7 +440,7 @@ if __name__ == "__main__" :
         df = pd.DataFrame(data_and_stats)
         print("\n-------------------Cleaning, Filtering and Stats Calculation #2 ...-------------------")
         clean_data, df_counter, df_stats = filter_and_clean(dataframe=df, valid_chars = allowed["valid"], drop_rows=drop_rows)
-        out_fname_prefix = f"{data_type}_{basename}_{split_type}"
+        out_fname_prefix = f"{data_type}_{basename}"
 
     elif data_type == 'M':
         print("-------------------Cleaning and Stats Calculation #1 ...-------------------")
@@ -456,7 +449,7 @@ if __name__ == "__main__" :
 
         print("\n-------------------Cleaning, Filtering and Stats Calculation #2 ...-------------------")
         clean_data, df_counter, df_stats = filter_and_clean(dataframe=df, valid_chars = allowed["valid"], drop_rows=drop_rows)
-        out_fname_prefix = f"{data_type}_{basename}"
+        out_fname_prefix = f"{data_type}_{basename}_{split_type}"
 
     print('\tSaving Final Sentences in txt format...')
     clean_data_path = os.path.join(out_lang_dir,f'{out_fname_prefix}_clean_sents.txt')

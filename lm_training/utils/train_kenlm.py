@@ -1,4 +1,4 @@
-#This code has been taken from https://github.com/mozilla/DeepSpeech/blob/master/data/lm/generate_lm.py
+#This code has been taken in part from https://github.com/mozilla/DeepSpeech/blob/master/data/lm/generate_lm.py
 
 import argparse
 import os
@@ -24,10 +24,10 @@ def str2bool(v):
         raise argparse.ArgumentTypeError('Boolean value expected.')
 
 def merge_text_files(args, lang):
-    os.system(f"cat {args.lm_dir}/{lang}/C_*_sents.txt {args.lm_dir}/{lang}/M_*_sents.txt > {args.lm_dir}/{lang}/ALL_SENTS.txt")
+    os.system(f"cat {args.lm_base_dirpath}/{lang}/C_*_sents.txt {args.lm_base_dirpath}/{lang}/M_*_sents.txt > {args.lm_base_dirpath}/{lang}/ALL_SENTS.txt")
 
 def merge_word_counters_corpus(args, lang):
-    corpus_counter_paths = glob.glob(f'{args.lm_dir}/{lang}/C_*_counter.tsv')
+    corpus_counter_paths = glob.glob(f'{args.lm_base_dirpath}/{lang}/C_*_counter.tsv')
     df_corpus = None
     for c_path in corpus_counter_paths:
         df_temp = pd.read_csv(c_path, sep='\t')
@@ -35,15 +35,15 @@ def merge_word_counters_corpus(args, lang):
             df_temp.rename(columns = {'freq':'freq_new'}, inplace = True)
             df_corpus = pd.merge(df_corpus, df_temp, on='word', how='left')
             df_corpus['freq'] = df_corpus['freq'] + df_corpus['freq_new'].fillna(0)
-            df_corpus.drop('freq_new', axis=1)
+            df_corpus.drop('freq_new', axis=1, inplace=True)
         else:
             df_corpus = df_temp
     if df_corpus is not None:
-        df_corpus.sort_values('freq', ascending=False, inplace=True)
-        df_corpus.to_csv(f'{args.lm_dir}/{lang}/C_ALL_COUNTER.tsv', sep='\t')
+        df_corpus_sort = df_corpus[['word','freq']].sort_values(by='freq', ascending=False)
+        df_corpus_sort.to_csv(f'{args.lm_base_dirpath}/{lang}/C_ALL_COUNTER.tsv', sep='\t')
     
 def merge_word_counters_manifests(args, lang):
-    corpus_counter_paths = glob.glob(f'{args.lm_dir}/{lang}/M_*_counter.tsv')
+    corpus_counter_paths = glob.glob(f'{args.lm_base_dirpath}/{lang}/M_*_counter.tsv')
     df_manifests = None  
     for c_path in corpus_counter_paths:
         df_temp = pd.read_csv(c_path, sep='\t')
@@ -51,12 +51,12 @@ def merge_word_counters_manifests(args, lang):
             df_temp.rename(columns = {'freq':'freq_new'}, inplace = True)
             df_manifests = pd.merge(df_manifests, df_temp, on='word', how='left')
             df_manifests['freq'] = df_manifests['freq'] + df_manifests['freq_new'].fillna(0)
-            df_manifests.drop('freq_new', axis=1)
+            df_manifests.drop('freq_new', axis=1, inplace=True)
         else:
             df_manifests = df_temp
     if df_manifests is not None:
-        df_manifests.sort_values('freq', ascending=False, inplace=True)
-        df_manifests.to_csv(f'{args.lm_dir}/{lang}/M_ALL_COUNTER.tsv', sep='\t')
+        df_manifests_sort = df_manifests[['word','freq']].sort_values(by='freq', ascending=False)
+        df_manifests_sort.to_csv(f'{args.lm_base_dirpath}/{lang}/M_ALL_COUNTER.tsv', sep='\t')
 
 def prepare_and_filter_topk(args, lang):
     topk = args.topk
@@ -66,9 +66,24 @@ def prepare_and_filter_topk(args, lang):
         raise Exception("Provide exactly one of the parameters 'topk_percent' or 'topk'!")
 
     print("\nStep 1:\tPreparing Data for LM-------------------------------------------")
-    c_all_counter_path = f'{args.lm_dir}/{lang}/C_ALL_COUNTER.tsv'
-    m_all_counter_path = f'{args.lm_dir}/{lang}/M_ALL_COUNTER.tsv'
-    all_sents_path = f'{args.lm_dir}/{lang}/ALL_SENTS'
+    c_all_counter_path = f'{args.lm_base_dirpath}/{lang}/C_ALL_COUNTER.tsv'
+    m_all_counter_path = f'{args.lm_base_dirpath}/{lang}/M_ALL_COUNTER.tsv'
+    all_sents_path = f'{args.lm_base_dirpath}/{lang}/ALL_SENTS.txt'
+
+    if os.path.exists(all_sents_path):
+        print('WARNING: "ALL_SENTS.txt" already exists, skipping...')
+    else:
+        print('Merging all "*clean_sents.txt" files!...')
+        merge_text_files(args, lang)
+        
+    temp_sents_path = f'{args.lm_base_dirpath}/{lang}/{args.intermediate_dir}/temp_sents.txt.gz'
+    if os.path.exists(temp_sents_path):
+        print('WARNING: "temp_sents.txt.gz" already exists, skipping...')
+    else:
+        print("Creating a temporary copy of ALL_SENTS!...")
+        _ = shutil.copyfile(all_sents_path, temp_sents_path)
+    if not args.do_filtering:
+        return temp_sents_path, None, None
 
     if os.path.exists(c_all_counter_path):
         print('WARNING: "C_ALL_COUNTER.tsv" already exists, skipping...')
@@ -80,22 +95,9 @@ def prepare_and_filter_topk(args, lang):
     else:
         print('Merging all "M_*words_counters.tsv" files!...')
         merge_word_counters_manifests(args, lang)
-    if os.path.exists(all_sents_path):
-        print('WARNING: "ALL_SENTS.txt" already exists, skipping...')
-    else:
-        print('Merging all "*clean_sents.txt" files!...')
-        merge_text_files(args, lang)
-
-    temp_sents_path = f'{args.lm_dir}/{lang}/itms/temp_sents.txt.gz'
-    if os.path.exists(temp_sents_path):
-        print('WARNING: "temp_sents.txt.gz" already exists, skipping...')
-    else:
-        print("Creating a temporary copy of ALL_SENTS!...")
-        _ = shutil.copyfile(all_sents_path, temp_sents_path)
-
+        
     if os.path.exists(c_all_counter_path):
         df_corpus_counter = pd.read_csv(c_all_counter_path, sep='\t')
-        
         tot_words = df_corpus_counter["freq"].sum()
         if topk is not None:
             topk_percent = topk / len(df_corpus_counter) * 100
@@ -111,21 +113,24 @@ def prepare_and_filter_topk(args, lang):
         print(f"Corpus Stats: Total Words: {tot_words}\t Total Unique Words: {len(df_corpus_counter)}\t Top-k:{topk}\t %age top-k: {topk_percent:.2f}%")
         if os.path.exists(m_all_counter_path):
             df_manifests_counter = pd.read_csv(m_all_counter_path, sep='\t')
-            df_all_counter = pd.merge(df_corpus_topk.drop("freq"), df_manifests_counter.drop("freq"), on='word', how='left')
+            df_all_counter = df_corpus_topk[["word","freq"]].merge(df_manifests_counter[["word","freq"]], on='word', how='left')
         else:
-            df_all_counter = df_corpus_topk
+            df_all_counter = df_corpus_topk[["word","freq"]]
             
     elif os.path.exists(m_all_counter_path):
         df_manifests_counter = pd.read_csv(m_all_counter_path, sep='\t')
-        df_all_counter = df_manifests_counter
-        df_all_counter["lexicon"] = df_all_counter["word"].apply(lambda x: " ".join(list(x.strip())) + " |")
-    
+        df_all_counter = df_manifests_counter[["word","freq"]]
+        
     else:
         print("ERROR: Unable to create lexicon file as no word counter files was found!")
         return temp_sents_path, None, None
 
-    lexicon_path = f'{args.lm_dir}/{lang}/topk-{topk}_lexicon.lst'
-    df_all_counter.to_csv(lexicon_path, sep="\t", index=False, header=False)
+    df_all_counter["lexicon"] = df_all_counter["word"].apply(lambda x: " ".join(list(x.strip())) + " |")
+    lexicon_path = f'{args.lm_base_dirpath}/{lang}/{args.lm_dirname}/topk-{topk}_lexicon.lst'
+    
+    c_m_topk_counter_path = f'{args.lm_base_dirpath}/{lang}/C_M_{topk}_COUNTER.tsv'
+    df_all_counter[["word","lexicon"]].to_csv(c_m_topk_counter_path, sep="\t")
+    df_all_counter[["word","lexicon"]].to_csv(lexicon_path, sep="\t", index=False, header=False)
 
     print(f"Combined Unique Words in the Lexicon, #{len(df_all_counter)}")
 
@@ -135,11 +140,9 @@ def prepare_and_filter_topk(args, lang):
 def build_lm(args, lang, sents_path, lexicon_path=None, topk=None):
     
     print("\nStep 2:\tBuilding LM-------------------------------------------")
-    output_dir = f'{args.lm_dir}/{lang}/lm'
-    intermediary_dir = f'{args.lm_dir}/{lang}/itms'
-    os.makedirs(output_dir, exist_ok=True)
-    os.makedirs(intermediary_dir, exist_ok=True)
-    lm_path = os.path.join(intermediary_dir, "lm.arpa")
+    output_dir = f'{args.lm_base_dirpath}/{lang}/{args.lm_dirname}'
+    intermediate_dir = f'{args.lm_base_dirpath}/{lang}/{args.intermediate_dir}'
+    lm_path = os.path.join(intermediate_dir, "lm.arpa")
 
     if not os.path.exists(lm_path):
         print("Creating ARPA file ...\n")
@@ -148,7 +151,7 @@ def build_lm(args, lang, sents_path, lexicon_path=None, topk=None):
                 "--order",
                 str(args.arpa_order),
                 "--temp_prefix",
-                intermediary_dir,
+                intermediate_dir,
                 "--memory",
                 args.max_arpa_memory,
                 "--text",
@@ -163,15 +166,10 @@ def build_lm(args, lang, sents_path, lexicon_path=None, topk=None):
         subprocess.check_call(subargs)
 
     # Filter LM using vocabulary of top-k words
-    filtered_path = os.path.join(intermediary_dir, "lm_filtered.arpa")
+    filtered_path = os.path.join(intermediate_dir, "lm_filtered.arpa")
     if not os.path.exists(filtered_path) and args.do_filtering and lexicon_path is not None:
         print("\nFiltering ARPA file using vocabulary of top-k words ...")
         lexicon = open(lexicon_path).read()
-        if topk is not None:
-            new_lexicon_path = os.path.join(output_dir, f"topk-{topk}_lexicon.lst")
-        else:
-            new_lexicon_path = os.path.join(output_dir, f"lexicon.lst")
-        _ = shutil.move(lexicon_path, new_lexicon_path)
         subprocess.run(
             [
                 os.path.join(args.kenlm_bins, "filter"),
@@ -213,7 +211,10 @@ def main():
     parser.add_argument(
         'LangCode', metavar='lang_code', type=str, help='Language Code')
     parser.add_argument(
-        "--lm_dir", help="Directory path for the lm", type=str, required=True
+        "--lm_base_dirpath", help="Directory path for the base lm", type=str, required=True
+    )
+    parser.add_argument(
+        "--lm_dirname", help="Directory name for the lm folder", type=str, default="lm"
     )
     parser.add_argument(
         "--intermediate_dir", help='Specify the name of the intermediate directory. Pass "" if not planning to store intermediate results', type=str, default="itms"
@@ -291,6 +292,12 @@ def main():
         default=True,
     )
     parser.add_argument(
+        "--clean_build",
+        help="Delete old intermediate files and build",
+        type=str2bool,
+        default=True,
+    )
+    parser.add_argument(
         "--discount_fallback",
         help="To try when such message is returned by kenlm: 'Could not calculate Kneser-Ney discounts [...] rerun with --discount_fallback'",
         action="store_true",
@@ -301,6 +308,29 @@ def main():
     lang_code = args.LangCode
     lang = CODE2LANG[lang_code]
 
+    output_dir = f'{args.lm_base_dirpath}/{lang}/{args.lm_dirname}'
+    os.makedirs(output_dir, exist_ok=True)
+
+    remove_intermediate = False
+    if args.intermediate_dir == "":
+        args.intermediate_dir = "temp_dir"
+        remove_intermediate = True
+    intermediate_dir = f'{args.lm_base_dirpath}/{lang}/{args.intermediate_dir}'
+    os.makedirs(intermediate_dir, exist_ok=True)
+
+    if args.clean_build:
+        # Delete intermediate files
+        if os.path.exists(f'{args.lm_base_dirpath}/{lang}/*_ALL_*'):
+            os.system(f'rm {args.lm_base_dirpath}/{lang}/*_ALL_*')
+        if os.path.exists(output_dir):
+            os.system(f'rm {output_dir}/*')
+        if os.path.exists(os.path.join(intermediate_dir, "temp_sents.txt.gz")):
+            os.remove(os.path.join(intermediate_dir, "temp_sents.txt.gz")) 
+        if os.path.exists(os.path.join(intermediate_dir, "lm.arpa")):
+            os.remove(os.path.join(intermediate_dir, "lm.arpa")) 
+        if os.path.exists(os.path.join(intermediate_dir, "lm_filtered.arpa")):
+            os.remove(os.path.join(intermediate_dir, "lm_filtered.arpa"))
+        
     if args.prepare_lm_data_lexicon:
         sents_path, lexicon_path, topk = prepare_and_filter_topk(args, lang)
         build_lm(args, lang, sents_path, lexicon_path, topk)
@@ -310,15 +340,19 @@ def main():
         else:
             print('ERROR: LM build failed as "sents_path" was not provided and "prepare_lm_data_lexicon" was None!')
 
-
-    temp_dir = f'{args.lm_dir}/{lang}/{args.intermediate_dir}'
-    if args.intermediary_dir == "":
+    if remove_intermediate:
         # Delete intermediate files
-        os.remove(os.path.join(temp_dir, "temp_sents.txt.gz")) # Do keep temp_sents.txt.gz
-        os.remove(os.path.join(temp_dir, "lm.arpa")) # Do keep lm.arpa
-
-    # we remove lm_filtered.arpa as they are 
-    os.remove(os.path.join(temp_dir, "lm_filtered.arpa"))
+        if os.path.exists(os.path.join(intermediate_dir, "temp_sents.txt.gz")):
+            os.remove(os.path.join(intermediate_dir, "temp_sents.txt.gz")) # Do keep temp_sents.txt.gz
+        if os.path.exists(os.path.join(intermediate_dir, "lm.arpa")):
+            os.remove(os.path.join(intermediate_dir, "lm.arpa")) # Do keep lm.arpa
+    
+    # remove combined manifests and text data
+    if os.path.exists(f'{args.lm_base_dirpath}/{lang}/*_ALL_*'):
+        os.system(f'rm {args.lm_base_dirpath}/{lang}/*_ALL_*')
+    # remove lm_filtered.arpa 
+    if os.path.exists(os.path.join(intermediate_dir, "lm_filtered.arpa")):
+        os.remove(os.path.join(intermediate_dir, "lm_filtered.arpa"))
 
 
 if __name__ == "__main__":
