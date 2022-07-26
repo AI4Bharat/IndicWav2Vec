@@ -137,7 +137,7 @@ def prepare_and_filter_topk(args, lang):
     return temp_sents_path, lexicon_path, topk
 
 
-def build_lm(args, lang, sents_path, lexicon_path=None, topk=None):
+def build_lm(args, lang, sents_path, lexicon_path=None, topk=None, remove_intermediate=False):
     
     print("\nStep 2:\tBuilding LM-------------------------------------------")
     output_dir = f'{args.lm_base_dirpath}/{lang}/{args.lm_dirname}'
@@ -165,6 +165,11 @@ def build_lm(args, lang, sents_path, lexicon_path=None, topk=None):
             subargs += ["--discount_fallback"]
         subprocess.check_call(subargs)
 
+    if remove_intermediate:
+        # Delete intermediate files
+        if os.path.exists(sents_path):
+            os.remove(sents_path) # Do keep temp_sents.txt.gz
+    
     # Filter LM using vocabulary of top-k words
     filtered_path = os.path.join(intermediate_dir, "lm_filtered.arpa")
     if not os.path.exists(filtered_path) and args.do_filtering and lexicon_path is not None:
@@ -182,6 +187,11 @@ def build_lm(args, lang, sents_path, lexicon_path=None, topk=None):
         )
     else:
         filtered_path = lm_path
+
+    if remove_intermediate:
+        # Delete intermediate files
+        if os.path.exists(lm_path):
+            os.remove(lm_path)
 
     # Quantize and produce trie binary.
     print("\nBuilding lm.binary ...")
@@ -333,20 +343,13 @@ def main():
         
     if args.prepare_lm_data_lexicon:
         sents_path, lexicon_path, topk = prepare_and_filter_topk(args, lang)
-        build_lm(args, lang, sents_path, lexicon_path, topk)
+        build_lm(args, lang, sents_path, lexicon_path, topk, remove_intermediate=remove_intermediate)
     else:
         if args.sent_path is not None:
-            build_lm(args, lang, args.sents_path, args.lexicon_path, args.topk)
+            build_lm(args, lang, args.sents_path, args.lexicon_path, args.topk, remove_intermediate=remove_intermediate)
         else:
             print('ERROR: LM build failed as "sents_path" was not provided and "prepare_lm_data_lexicon" was None!')
 
-    if remove_intermediate:
-        # Delete intermediate files
-        if os.path.exists(os.path.join(intermediate_dir, "temp_sents.txt.gz")):
-            os.remove(os.path.join(intermediate_dir, "temp_sents.txt.gz")) # Do keep temp_sents.txt.gz
-        if os.path.exists(os.path.join(intermediate_dir, "lm.arpa")):
-            os.remove(os.path.join(intermediate_dir, "lm.arpa")) # Do keep lm.arpa
-    
     # remove combined manifests and text data
     if os.path.exists(f'{args.lm_base_dirpath}/{lang}/*_ALL_*'):
         os.system(f'rm {args.lm_base_dirpath}/{lang}/*_ALL_*')
