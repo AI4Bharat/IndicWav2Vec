@@ -18,6 +18,8 @@
 import argparse
 import json
 import os
+import shutil
+import pandas as pd
 
 import fairseq
 import torch
@@ -254,17 +256,47 @@ def convert_wav2vec2_checkpoint(
 
     hf_wav2vec.save_pretrained(pytorch_dump_folder_path)
 
+def copy_language_model(pytorch_dump_folder_path, lm_path, lexicon_path, dict_path, alpha=0.5, beta=1.5, include_language_model=True):
+    with open(f"{pytorch_dump_folder_path}/preprocessor_config.json") as f:
+        config_json = f.read()
+    with open(f"{pytorch_dump_folder_path}/preprocessor_config.json", 'w') as f:
+        f.write(config_json.replace("Wav2Vec2Processor", "Wav2Vec2ProcessorWithLM"))
+
+    dest_path = f"{pytorch_dump_folder_path}/language_model"
+    os.makedirs(dest_path, exist_ok=True)
+
+    with open(f"{dest_path}/attrs.json", "w") as f:
+        f.write(json.dumps({"alpha": alpha, "beta": beta, "unk_score_offset": -10.0, "score_boundary": True}))
+
+    df_chars = pd.read_csv(dict_path, sep=" ", header=None)
+    char_list = ["", "<s>", "</s>", "\u2047"] + df_chars[0].tolist()
+    alpha_json = json.dumps({"labels": char_list, "is_bpe": "false"})
+    with open(f'{pytorch_dump_folder_path}/alphabet.json', 'w') as f:
+        f.write(alpha_json.replace("|", " "))
+
+    shutil.copyfile(lm_path, f"{dest_path}/lm.binary")
+    df = pd.read_csv(lexicon_path, sep="\t", header=None)
+    df[0].to_csv(f"{dest_path}/unigrams.txt", sep="\t", header=False, index=False)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--pytorch_dump_folder_path", default=None, type=str, help="Path to the output PyTorch model.")
     parser.add_argument("--checkpoint_path", default=None, type=str, help="Path to fairseq checkpoint")
+    parser.add_argument("--lm_path", default=None, type=str, help="Path to lm checkpoint")
+    parser.add_argument("--alpha", default=None, type=float, help="LM weight")
+    parser.add_argument("--beta", default=None, type=float, help="Word penalty score")
+    parser.add_argument("--lexicon_path", default=None, type=str, help="Path to lexicon")
     parser.add_argument("--dict_path", default=None, type=str, help="Path to dict of fine-tuned model")
     parser.add_argument("--config_path", default=None, type=str, help="Path to hf config.json of model to convert")
     parser.add_argument(
         "--not_finetuned", action="store_true", help="Whether the model to convert is a fine-tuned model or not"
     )
+    parser.add_argument("--with_LM", action="store_true", help="Whether the model to convert has LM support or not")
     args = parser.parse_args()
     convert_wav2vec2_checkpoint(
         args.checkpoint_path, args.pytorch_dump_folder_path, args.config_path, args.dict_path, not args.not_finetuned
     )
+    if args.with_LM:
+        copy_language_model(
+            args.pytorch_dump_folder_path, args.lm_path, args.lexicon_path, args.dict_path, args.alpha, args.beta, args.with_LM
+        )
