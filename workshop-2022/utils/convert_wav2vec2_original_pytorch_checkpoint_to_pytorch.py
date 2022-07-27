@@ -265,8 +265,9 @@ def copy_language_model(pytorch_dump_folder_path, lm_path, lexicon_path, dict_pa
     dest_path = f"{pytorch_dump_folder_path}/language_model"
     os.makedirs(dest_path, exist_ok=True)
 
+    attrs_json = {"alpha": alpha, "beta": beta, "unk_score_offset": -10.0, "score_boundary": True}
     with open(f"{dest_path}/attrs.json", "w") as f:
-        f.write(json.dumps({"alpha": alpha, "beta": beta, "unk_score_offset": -10.0, "score_boundary": True}))
+        f.write(json.dumps(attrs_json))
 
     df_chars = pd.read_csv(dict_path, sep=" ", header=None)
     char_list = ["", "<s>", "</s>", "\u2047"] + df_chars[0].tolist()
@@ -283,8 +284,8 @@ if __name__ == "__main__":
     parser.add_argument("--pytorch_dump_folder_path", default=None, type=str, help="Path to the output PyTorch model.")
     parser.add_argument("--checkpoint_path", default=None, type=str, help="Path to fairseq checkpoint")
     parser.add_argument("--lm_path", default=None, type=str, help="Path to lm checkpoint")
-    parser.add_argument("--alpha", default=None, type=float, help="LM weight")
-    parser.add_argument("--beta", default=None, type=float, help="Word penalty score")
+    parser.add_argument("--alpha", default=0.5, type=float, help="LM weight")
+    parser.add_argument("--beta", default=1.5, type=float, help="Word penalty score")
     parser.add_argument("--lexicon_path", default=None, type=str, help="Path to lexicon")
     parser.add_argument("--dict_path", default=None, type=str, help="Path to dict of fine-tuned model")
     parser.add_argument("--config_path", default=None, type=str, help="Path to hf config.json of model to convert")
