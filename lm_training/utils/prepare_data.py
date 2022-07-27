@@ -383,7 +383,7 @@ if __name__ == "__main__" :
     parser.add_argument('--dict_dir', type=str, default=None, help="Directory containing language dictionary, if None, defaults to dict.ltr.txt")
     parser.add_argument('--out_dir', type=str, default='./Model', help="Default Directory to store the plots/models etc.")
     parser.add_argument('--save_plots', type=str2bool, default=True, help="do `--save_plots=True` for saving plots/stats.")
-    parser.add_argument('--save_itms', type=str2bool, default=True, help="do `--save_itms=True` to save intermediary models.")
+    parser.add_argument('--save_itms', type=str2bool, default=False, help="do `--save_itms=True` to save intermediary models.")
     parser.add_argument('--save_new_manifests', type=str2bool, default=False, help="It creates new manifest folder. NOTE: This is ONLY for fairseq-style-data-manifests folder")
     parser.add_argument('--new_manifests_dirname', type=str2bool, default=False, help="Path to the new manifests folder. NOTE: This is ONLY for fairseq-style-data-manifests folder")
     parser.add_argument('--do_normalize', type=str2bool, default=True, help="Perform Normalization of Indian Characters")
@@ -411,15 +411,39 @@ if __name__ == "__main__" :
     os.makedirs(out_lang_dir, exist_ok=True)
 
     if args.dict_dir is not None:
-        dict_filepath = os.path.join(args.dict_dir, f"{lang}_dict.txt")
-    else:
+        dict_path_1 = os.path.join(args.dict_dir, f"{lang}_dict.txt")
+        dict_path_2 = os.path.join(args.dict_dir, f"{lang_code}_dict.txt")
+        if os.path.isfile(dict_path_1):
+            dict_filepath = dict_path_1
+        elif os.path.isfile(dict_path_2):
+            dict_filepath = dict_path_2
+        else:
+            raise ValueError("Provide Dict file in right format!")
+    elif os.path.isfile(os.path.join(data_dir, lang, 'dict.ltr.txt')):
         dict_filepath = os.path.join(data_dir, lang, 'dict.ltr.txt')
-    
+    else:
+        raise ValueError("No Dict File found!")
+
     if data_type == "M":
-        txt_filepath = os.path.join(data_dir, f'{lang}_{split_type}.wrd')
-        # txt_filepath = os.path.join(data_dir, lang, f'{split_type}.wrd')
+        txt_path_1 = os.path.join(data_dir, f'{lang}_{split_type}.wrd')
+        txt_path_2 = os.path.join(data_dir, f'{lang_code}_{split_type}.wrd')
+        txt_path_3 = os.path.join(data_dir, lang, f'{split_type}.wrd')
+        txt_path_4 = os.path.join(data_dir, lang_code, f'{split_type}.wrd')
+        if os.path.isfile(txt_path_1):
+            txt_filepath = txt_path_1
+        elif os.path.isfile(txt_path_2):
+            txt_filepath = txt_path_2
+        elif os.path.isfile(txt_path_3):
+            txt_filepath = txt_path_3
+        elif os.path.isfile(txt_path_4):
+            txt_filepath = txt_path_4
     elif data_type == "C":
-        txt_filepath = os.path.join(data_dir, f'{lang_code}_sents.txt')
+        txt_path_1 = os.path.join(data_dir, f'{lang}_sents.txt')
+        txt_path_2 = os.path.join(data_dir, f'{lang_code}_sents.txt')
+        if os.path.isfile(txt_path_1):
+            txt_filepath = txt_path_1
+        elif os.path.isfile(txt_path_2):
+            txt_filepath = txt_path_2
     
     if not os.path.exists(txt_filepath):
         raise Exception(f'Text file NOT FOUND at "{txt_filepath}"')
