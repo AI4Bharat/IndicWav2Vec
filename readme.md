@@ -189,7 +189,7 @@ Our models can be directly accessed on [ULCA](https://bhashini.gov.in/ulca/model
   sudo apt-get install liblzma-dev libbz2-dev libzstd-dev libsndfile1-dev libopenblas-dev libfftw3-dev libgflags-dev libgoogle-glog-dev
   sudo apt install build-essential cmake libboost-system-dev libboost-thread-dev libboost-program-options-dev libboost-test-dev libeigen3-dev zlib1g-dev libbz2-dev liblzma-dev ffmpeg
 
-   pip install -r requirements.txt
+   pip install -r w2v_inference/requirements.txt
 
    pip install packaging soundfile swifter editdistance omegaconf
   ```
