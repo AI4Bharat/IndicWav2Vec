@@ -12,4 +12,6 @@ Details and step-by-step walkthrough of training, exporting and deploying Indicw
 
 Discussion on topics like ASR Pipeline, Wav2Vec2 Architecture, Role of LM in ASR, Mining Parallel Data, etc.  can be found [here]()
 
-#### For any queries related to workshop, create a new Github issues with the label, `workshop-2022`.
+#### For any queries related to workshop, create a new Github issues with the label, `workshop-2022` or add to the Q&A tab in [Discussions](https://github.com/AI4Bharat/IndicWav2Vec/discussions/categories/q-a).
+
+#### Note: Video recordings of the workshop will be made available by 7th, August, 2022.
