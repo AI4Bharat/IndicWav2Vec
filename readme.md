@@ -60,25 +60,24 @@ Added more documentation
 ## Resources
 
 ### Download Models
-Finetuned Models
 |Language |Acoustic Model | Dictionary | Language Model | Lexicon | Wandb |
 | - | - |  - | - | - | - |
-| Bengali | [fairseq](https://storage.googleapis.com/ai4b-public-data/indic-wav2vec/checkpoints/finetuning/large/bengali_large.pt) / [hf]()| [link]() |  [KenLM](https://storage.googleapis.com/indicwav2vec-public/language-models/bengali.zip) | [link](https://storage.googleapis.com/indicwav2vec-public/language-models/bengali.zip) | [link]() |
-| Gujarati | [fairseq](https://storage.googleapis.com/ai4b-public-data/indic-wav2vec/checkpoints/finetuning/large/gujarati_large.pt) / [hf]() | [link]() |  [KenLM](https://storage.googleapis.com/indicwav2vec-public/language-models/guharati.zip) | [link](https://storage.googleapis.com/indicwav2vec-public/language-models/guharati.zip) | [link]() |
-| Hindi | [fairseq](https://storage.googleapis.com/ai4b-public-data/indic-wav2vec/checkpoints/finetuning/large/hindi_large.pt) / [hf]() | [link]() |  [KenLM](https://storage.googleapis.com/indicwav2vec-public/language-models/hindi.zip) | [link](https://storage.googleapis.com/indicwav2vec-public/language-models/hindi.zip) | [link]() |
-| Marathi | [fairseq](https://storage.googleapis.com/ai4b-public-data/indic-wav2vec/checkpoints/finetuning/large/marathi_large.pt) / [hf]() | [link]() |  [KenLM](https://storage.googleapis.com/indicwav2vec-public/language-models/marathi.zip) | [link](https://storage.googleapis.com/indicwav2vec-public/language-models/marathi.zip) | [link]() |
-| Nepali | [fairseq](https://storage.googleapis.com/ai4b-public-data/indic-wav2vec/checkpoints/finetuning/large/nepali_large.pt) / [hf]() | [link]() |  [KenLM](https://storage.googleapis.com/indicwav2vec-public/language-models/nepali.zip) | [link](https://storage.googleapis.com/indicwav2vec-public/language-models/nepali.zip) | [link]() |
-| Odia | [fairseq](https://storage.googleapis.com/ai4b-public-data/indic-wav2vec/checkpoints/finetuning/large/odia_large.pt) / [hf]() | [link]() |  [KenLM]() | [link]() | [link]() |
-| Tamil | [fairseq](https://storage.googleapis.com/ai4b-public-data/indic-wav2vec/checkpoints/finetuning/large/tamil_large.pt) / [hf]() | [link]() |  [KenLM](https://storage.googleapis.com/indicwav2vec-public/language-models/odia.zip) | [link](https://storage.googleapis.com/indicwav2vec-public/language-models/odia.zip) | [link]() |
-| Telugu | [fairseq](https://storage.googleapis.com/ai4b-public-data/indic-wav2vec/checkpoints/finetuning/large/telugu_large.pt) / [hf]() | [link]() |  [KenLM](https://storage.googleapis.com/indicwav2vec-public/language-models/telugu.zip) | [link](https://storage.googleapis.com/indicwav2vec-public/language-models/telugu.zip) | [link]() |
-| Sinhala | [fairseq](https://storage.googleapis.com/ai4b-public-data/indic-wav2vec/checkpoints/finetuning/large/sinhala_large.pt) / [hf]() | [link]() |  [KenLM]() | [link]() | [link]() |
+| Bengali | [fairseq](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/bn/bn.pt) \| [[hf]]()| [link](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/bn/dict.ltr.txt) |  [KenLM](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/bn/lm.binary) | [link](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/bn/lexicon.lst) | [link]() |
+| Gujarati | [fairseq](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/gu/gu.pt) / [hf]() | [link](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/gu/dict.ltr.txt) |  [KenLM](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/gu/lm.binary) | [link](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/gu/lexicon.lst) | [link]() |
+| Hindi | [fairseq](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/hi/hi.pt) / [hf]() | [link](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/hi/dict.ltr.txt) |  [KenLM](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/hi/lm.binary) | [link](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/hi/lexicon.lst) | [link]() |
+| Marathi | [fairseq](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/mr/mr.pt) / [hf]() | [link](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/mr/dict.ltr.txt) |  [KenLM](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/mr/lm.binary) | [link](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/mr/lexicon.lst) | [link]() |
+| Nepali | [fairseq](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/ne/ne.pt) / [hf]() | [link](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/ne/dict.ltr.txt) |  [KenLM](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/ne/lm.binary) | [link](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/ne/lexicon.lst) | [link]() |
+| Odia | [fairseq](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/or/or.pt) / [hf]() | [link](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/or/dict.ltr.txt) |  [KenLM](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/or/lm.binary) | [link](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/or/lexicon.lst) | [link]() |
+| Tamil | [fairseq](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/ta/ta.pt) / [hf]() | [link](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/ta/dict.ltr.txt) |  [KenLM](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/ta/lm.binary) | [link](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/ta/lexicon.lst) | [link]() |
+| Telugu | [fairseq](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/te/te.pt) / [hf]() | [link](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/te/dict.ltr.txt) |  [KenLM](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/te/lm.binary) | [link](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/te/lexicon.lst) | [link]() |
+| Sinhala | [fairseq](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/si/si.pt) / [hf]() | [link](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/models/si/dict.ltr.txt) |  [KenLM]() | [link]() | [link]() |
 
 
 Pretrained Model(*)
 |Name |Model Checkpoint | 
 | - | - |  
-| IndicWav2Vec Large | [fairseq](https://storage.googleapis.com/ai4b-public-data/indic-wav2vec/checkpoints/pretraining/indicwav2vec-large.pt) | 
-| IndicWav2Vec Base | [fairseq](https://storage.googleapis.com/ai4b-public-data/indic-wav2vec/checkpoints/pretraining/indicwav2vec-base.pt) | 
+| IndicWav2Vec Large | [fairseq](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/pretrained_models/indicw2v_large_pretrained.pt) | 
+| IndicWav2Vec Base | [fairseq](https://indic-asr-public.objectstore.e2enetworks.net/aaai_ckpts/pretrained_models/indicw2v_base_pretrained.pt) | 
 
 (* Trained on 40 Indian Languages, more details can be found [here](https://www.aaai.org/AAAI22Papers/AAAI-12428.JavedT.pdf))
 
