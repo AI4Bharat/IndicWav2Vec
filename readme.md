@@ -86,15 +86,15 @@ Pretrained Model(*)
 Our models are hosted at the following API end points. 
 | Langugage| Language Code | API End point |
 | - | - | - |
-| Bengali | bn | [https://34.65.180.101:5000/infer_ulca_bn](https://34.65.180.101:5000/infer_ulca_bn) |
-| Gujarati | gu | [https://34.65.180.101:5000/infer_ulca_gu](https://34.65.180.101:5000/infer_ulca_gu) |
-| Hindi | hi | [https://216.48.182.174:4999/infer_ulca_hi](https://216.48.182.174:4999/infer_ulca_hi) |
-| Marathi | mr| [https://34.65.180.101:5000/infer_ulca_mr](https://34.65.180.101:5000/infer_ulca_mr) |
-| Nepali | ne| [https://34.65.180.101:5000/infer_ulca_ne](https://34.65.180.101:5000/infer_ulca_ne) |
-| Odia | or| [https://34.65.180.101:5000/infer_ulca_or](https://34.65.180.101:5000/infer_ulca_or) |
-| Tamil | ta| [https://34.65.180.101:5000/infer_ulca_ta](https://34.65.180.101:5000/infer_ulca_ta) |
-| Telugu | te| [https://34.65.180.101:5000/infer_ulca_te](https://34.65.180.101:5000/infer_ulca_te) |
-| Sinhala | si| [https://34.65.180.101:5000/infer_ulca_si](https://34.65.180.101:5000/infer_ulca_si) |
+| Bengali | bn | [coming soon - will be back shortly]() |
+| Gujarati | gu | [coming soon - will be back shortly]() |
+| Hindi | hi | [https://ai4b-dev-asr.ulcacontrib.org/asr/v1/recognize/hi](https://ai4b-dev-asr.ulcacontrib.org/asr/v1/recognize/hi) |
+| Marathi | mr| [https://ai4b-dev-asr.ulcacontrib.org/asr/v1/recognize/mr](https://ai4b-dev-asr.ulcacontrib.org/asr/v1/recognize/mr) |
+| Nepali | ne| [coming soon - will be back shortly]() |
+| Odia | or| [coming soon - will be back shortly]() |
+| Tamil | ta| [https://ai4b-dev-asr.ulcacontrib.org/asr/v1/recognize/ta](https://ai4b-dev-asr.ulcacontrib.org/asr/v1/recognize/ta) |
+| Telugu | te| [https://ai4b-dev-asr.ulcacontrib.org/asr/v1/recognize/te](https://ai4b-dev-asr.ulcacontrib.org/asr/v1/recognize/te) |
+| Sinhala | si| [coming soon - will be back shortly]() |
 
 
 Input API data format
